@@ -80,23 +80,23 @@ MakeHexMap <- function(sdf, seed = 999) {
 
 # Create empty hexgrids ########################################################
 #
-data <- readRDS("./data/WardMap.rds")
+data <- readRDS("./data/HolyroodMap.rds")
 # data<-as(data, 'Spatial')
 
 # plot(data)
 # text(coordinates(data), labels = str_wrap(data$Area, width = 14), cex = 0.3)
 
 i = 8650
-data <- data %>% filter(Council== "Aberdeenshire")
+# data <- data %>% filter(Council== "Aberdeenshire")
 map <- MakeHexMap(data, i)
 
 
 ggplot(map) +
-  geom_sf(aes(fill = Council), color = "steelblue",
+  geom_sf(aes(fill = "white"), color = "steelblue",
           show.legend = FALSE) +
   theme_void() +
-  geom_sf_text(aes(label = str_wrap(ElectoralWard2022Name, width = 14)),
+  geom_sf_text(aes(label = str_wrap(Holyrood, width = 14)),
                size = 1.5,
                lineheight = 0.75)
 
- st_write(map, "./data/geojson/AberdeenshireWards.geojson")
+ st_write(map, "./data/geojson/HolyroodHexMap.geojson")
