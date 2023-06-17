@@ -1,0 +1,502 @@
+# Aim: attribute geographic classifications to raw DAISy data to enable subsequent analysis.
+
+# Strategy:
+# 1.  Get DAISy
+# 2. tidy up Daisy data
+# 3. merge lookup and daisy by postcode.
+# 4. analyse against this file.
+
+#
+# Setup ########################################################################
+#
+library(tidyverse)
+# Includes 1. ggplot2 (for Data Visualization and Exploration), 2. dplyr (for data manipulation eg select, filter, summarise), 3. tidyr (tidying date eg pivot), 4. stringr (working with strings), 5. forcats (manipulating factors), 6. tibble (modern dataframe), 7. readr (read rectangular data), 8. purrr (tools for working with functions and vectors)
+library(urltools) # to manipulate URL
+library(readxl) # to read excel file
+library(rvest) # Read html
+library(lubridate) # to manipulate dates
+library(tsibble) # used to process dates eg yearweek
+library(sf) # manipulate spatial vector data
+library(fs) # for manipulating working directory
+library(viridisLite) # for palettes
+library(sysfonts) # add google fonts
+
+# Run Lookup script to ensure all lookup dataframes needed are available
+Wdir <- getwd()
+source(paste0(R_FS_HOME, "/ADP/LookupTables/Get_LookupTables.R"))
+setwd(Wdir)
+
+#load fonts
+chartfont <- "Fira Sans Extra Condensed"
+font_add_google(name = chartfont, chartfont)
+accent <- "#356fba" #ADP Blue
+
+my_palette <- cividis(8, direction = -1)
+
+windowsFonts(chartfont = windowsFont(chartfont))
+
+
+# Needed only on Windows - run once per R session - for embedding fonts in pdf
+Sys.setenv(R_GSCMD = "C:/Program Files/gs/bin/gswin64c.exe")
+
+# Options
+options(
+  scipen = 1,
+  digits = 2,
+  big.mark = ",",
+  papersize = "a4"
+) #default format for numbers
+options(kableExtra.latex.load_packages = TRUE)
+options(tinytex.verbose = TRUE)
+options(dplyr.summarise.inform = FALSE)
+# options(knitr.table.format = "latex")
+
+# controls whether to publish 'code appendix' at end of doc
+code <- FALSE
+
+
+
+blankdf <-
+  data.frame(
+    "1" = "None",
+    "2" = "None",
+    "3" = "None",
+    stringsAsFactors = FALSE
+  )
+blankdf <-
+  rename(
+    blankdf,
+    "Service Provider" = "X1",
+    "Client Type" = "X2",
+    "EOCN" = "X3"
+  )
+
+
+# Get logo
+# logo <-  readPNG("../CommonData/ADPLogo.png")
+
+# Get DAISy data #################################################
+FullDaisy <- read_csv(
+  "./data/shire-daisy.csv",
+  trim_ws = TRUE,
+  col_types = cols(
+    `Date Referral Received` = col_character(),
+    `Service User ID` = col_character(),
+    `Service User Type` = col_character(),
+    Postcode = col_character(),
+    Sex = col_character()
+  ),
+  locale = locale()
+) %>%
+  select(
+    ServiceUserType = `Service User Type`,
+    ServiceUserID = `Service User ID`,
+    Postcode,
+    Sex,
+    DateReferralReceived = `Date Referral Received`
+  )
+FullDaisy$DateReferralReceived <-
+  as.Date(FullDaisy$DateReferralReceived)
+
+# Filter to remove any duplicated records
+OurPeople <- distinct(FullDaisy)
+
+# Issue: it is possible for one SUId to relate to more than one postcode,
+# referral or service user type. Rather than inflate the number of SUs in the
+# system, I use the mnost recent data associated with that SU only for
+# geographic analysis. Last slice below removes cases with different user type
+# referred on the same day.
+OurPeople <- OurPeople %>%
+  group_by(ServiceUserID) %>%
+  slice_max(order_by = DateReferralReceived, n = 1) %>%
+  slice_head(n = 1) %>%
+  ungroup() %>%
+  select(!c(ServiceUserID))
+
+# Deal with a problem postcodes
+OurPeople$Postcode <- case_when(
+  OurPeople$Postcode == "ZZ99 3VZ" ~ "No Fixed Abode",
+  OurPeople$Postcode == "NF1 1AB"  ~ "No Fixed Abode",
+  OurPeople$Postcode == "ZZ99 3WZ" ~ "Not known",
+  OurPeople$Postcode == "ZZ99 3CZ" ~ "England",
+  OurPeople$Postcode == "ZZ99 2WZ" ~ "Northern Ireland",
+  OurPeople$Postcode == "ZZ99 1WZ" ~ "Scotland",
+  OurPeople$Postcode == "ZZ99 3GZ" ~ "Wales",
+  OurPeople$Postcode == "BF01 0AA" ~ "Not known",
+  OurPeople$Postcode == "NK01 0AA" ~ "Not known",
+  OurPeople$Postcode == "OS1 1AA"  ~ "Not known",
+  TRUE                   ~ OurPeople$Postcode
+)
+
+# Modify gender field
+OurPeople$Sex <- case_when(
+  OurPeople$Sex == "Not known (indeterminate sex, intersex)" ~ "Unknown",
+  TRUE                ~ OurPeople$Sex
+)
+
+# Add Grouped Referral date fields
+OurPeople <- OurPeople %>%
+  mutate(
+    RefWeek = yearweek(DateReferralReceived),
+    RefMonth = yearmonth(DateReferralReceived)
+  ) %>%
+  select(!DateReferralReceived)
+
+# Merge with postcode lookup
+OurPeople <- OurPeople %>%
+  left_join(Lookup_postcode, by = "Postcode")
+
+# Deal with missing postcodes
+# Initial analysis to ID unrecognised postcodes as typos
+OurPeople$DataZone2011Code <- ifelse(
+  OurPeople$Postcode == "Not known" |
+    OurPeople$Postcode == "No Fixed Abode" |
+    OurPeople$Postcode == "England" |
+    OurPeople$Postcode == "Scotland" |
+    OurPeople$Postcode == "Wales",
+  OurPeople$Postcode,
+  OurPeople$DataZone2011Code
+)
+OurPeople$DataZone2011Code <-
+  OurPeople$DataZone2011Code %>% replace_na("Typo")
+
+#Propogate these missing details to other categorical fields, initially relying on Council Name being NA.
+OurPeople$Households[which(is.na(OurPeople$Council))] = 0
+OurPeople$Population[which(is.na(OurPeople$Council))] = 0
+
+OurPeople$Ward[which(is.na(OurPeople$Council))] = OurPeople$DataZone2011Code[which(is.na(OurPeople$Council))]
+OurPeople$ElectoralWard2022Code[which(is.na(OurPeople$Council))] = OurPeople$DataZone2011Code[which(is.na(OurPeople$Council))]
+
+OurPeople$Datazone[which(is.na(OurPeople$Council))] = OurPeople$DataZone2011Code[which(is.na(OurPeople$Council))]
+
+OurPeople$IZname[which(is.na(OurPeople$Council))] = OurPeople$DataZone2011Code[which(is.na(OurPeople$Council))]
+OurPeople$IZcode[which(is.na(OurPeople$Council))] = OurPeople$DataZone2011Code[which(is.na(OurPeople$Council))]
+
+OurPeople$Locality[which(is.na(OurPeople$Council))] = OurPeople$DataZone2011Code[which(is.na(OurPeople$Council))]
+OurPeople$Locality2020Code[which(is.na(OurPeople$Council))] = OurPeople$DataZone2011Code[which(is.na(OurPeople$Council))]
+
+OurPeople$Holyrood[which(is.na(OurPeople$Council))] = OurPeople$DataZone2011Code[which(is.na(OurPeople$Council))]
+OurPeople$ScottishParliamentaryConstituency2021Code[which(is.na(OurPeople$Council))] = OurPeople$DataZone2011Code[which(is.na(OurPeople$Council))]
+
+OurPeople$Westminster[which(is.na(OurPeople$Council))] = OurPeople$DataZone2011Code[which(is.na(OurPeople$Council))]
+OurPeople$UKParliamentaryConstituency2005Code[which(is.na(OurPeople$Council))] = OurPeople$DataZone2011Code[which(is.na(OurPeople$Council))]
+
+OurPeople$Rurality[which(is.na(OurPeople$Council))] = "Other"
+
+OurPeople$Area[which(is.na(OurPeople$Council))] = OurPeople$DataZone2011Code[which(is.na(OurPeople$Council))]
+
+OurPeople$Rurality[which(is.na(OurPeople$Council))] = OurPeople$DataZone2011Code[which(is.na(OurPeople$Council))]
+
+OurPeople$Council[which(is.na(OurPeople$Council))] = OurPeople$DataZone2011Code[which(
+  OurPeople$DataZone2011Code == "Not known" |
+    OurPeople$DataZone2011Code == "No Fixed Abode" |
+    OurPeople$DataZone2011Code  == "England" |
+    OurPeople$DataZone2011Code  == "Scotland" |
+    OurPeople$DataZone2011Code == "Wales" |
+    OurPeople$DataZone2011Code == "Typo"
+)]
+
+
+# Get Denominator Council
+HomeCouncil <-  OurPeople %>%
+  group_by(Council) %>%
+  summarise(n = n()) %>%
+  slice(which.max(n)) %>%
+  dplyr::select(!n)
+HomeCouncil <- HomeCouncil$Council
+
+# Functions ####################################################################
+analyse_ourpeople <-
+  function(pop_level) {
+    # Create population lookup table
+    pop_lookup <- Lookup_postcode %>%
+      rename(level = all_of(pop_level)) %>%
+      select("DataZone2011Code", "Council", "level") %>%
+      distinct() %>%
+      left_join(DZ_Pop_Estimate, by = "DataZone2011Code") %>%
+      filter(Council == BiggestCouncil$Council) %>%
+      group_by(level, Sex) %>%
+      summarise(Population = sum(Population))
+
+    #Rename column of interest (defined by pop_level ) to level
+    People <- OurPeople %>%  rename(level = all_of(pop_level))
+    # Get client counts
+    People <- People %>%
+      group_by(level, Sex, ServiceUserType, Council) %>%
+      summarise(ClientCount = n()) %>%
+      ungroup()
+
+    # Remove cases not from BiggestCouncil$Council or a pop_level or unknown sex and return a summary version
+    # get and summarise exclusions
+    NoLevel <- People[(
+      People$Council != BiggestCouncil$Council |
+        People$level == "No Locality" |
+        People$level == "Typo" |
+        People$Sex == "Unknown"
+    ),] %>%
+      group_by(Sex, ServiceUserType) %>%
+      summarise(ClientCount = sum(ClientCount))
+    NoLevel$level <- "Other"
+
+
+    # remove exclusions from 'people' df
+    People <-
+      People[!(
+        People$Council != BiggestCouncil$Council |
+          People$level  == "No Locality"  |
+          People$level == "Typo" |
+          People$Sex == "Unknown"
+      ),] %>% select(!Council)
+
+    # return no-level summary to 'people' df
+    People <-
+      rbind(People, NoLevel) %>%
+      arrange(-ClientCount)
+    rm(NoLevel)
+
+
+    # calculate rates
+    Rate_People <- People %>%
+      group_by(level, Sex) %>%
+      summarise(ClientCount = sum(ClientCount)) %>%
+      left_join(pop_lookup, by = c("level", "Sex")) %>%
+      drop_na(Population) %>%
+      mutate(ClientsPer100Pop =  round(ClientCount / Population * 100, 2)) %>%
+      arrange(-ClientsPer100Pop)
+
+
+
+    # Collect df's into a list for returning
+    newlist <-
+      list("count" = People,
+           "pop" = pop_lookup,
+           "rate" = Rate_People)
+    rm()
+    return(newlist)
+  }
+
+# Create Analysis Data Frames ##################################################
+
+# Group and count by Postcode sex and user type
+OurPeople_PC <- OurPeople %>%
+  group_by(Postcode, Sex, ServiceUserType) %>%
+  summarise(ClientCount = n()) %>%
+  ungroup() %>%
+  arrange(-ClientCount)
+
+
+# Group, count and calculate rate, creating df's 'Rate_xxx' and 'ourpeople_xxx'
+locality <- analyse_ourpeople("Locality")
+# datazone <- analyse_ourpeople("Datazone")
+# ward <- analyse_ourpeople("Ward")
+# IZ <- analyse_ourpeople("IZname")
+# holywood <- analyse_ourpeople("Holyrood")
+# westminster <- analyse_ourpeople("Westminster")
+# area <- analyse_ourpeople("Area")
+# council <- analyse_ourpeople("CouncilArea2019Code")
+# rurality <- analyse_ourpeople("Rurality")
+# simd <- analyse_ourpeople("SIMDQuintile")
+
+## get locality fixed ######################################
+
+
+# libraries we need
+libs <- c("sp", "rgeos","ggrepel", "elevatr", "terra", "tidyverse",
+          "sf", "giscoR", "marmap")
+
+# install missing libraries
+installed_libs <- libs %in% rownames(installed.packages())
+if (any(installed_libs == F)) {
+  install.packages(libs[!installed_libs])
+}
+
+# load libraries
+invisible(lapply(libs, library, character.only = T))
+
+
+
+# Get geometry
+locgeo <- readRDS("../Maps/data/LocalityMap.rds")
+locgeo <- locgeo %>%  select(!c(code, Shape_Leng, Shape_Area))
+Centers <-
+  coordinates(gCentroid(
+    spgeom = methods::as(object = locgeo, Class = "Spatial"),
+    byid = T,
+    id = locgeo$name
+  )) %>% as.data.frame() %>% rownames_to_column(var = "name")
+locgeo <- locgeo %>% left_join(Centers, by = "name")
+CouncilsMap <- readRDS("../Maps/data/CouncilsMap.rds")
+CouncilsMap <-
+  CouncilsMap %>% filter(Council == HomeCouncil) %>% select(!CouncilArea2019Code)
+
+#get outcome data
+loccount <- locality[[1]] %>% filter(!level == "Other")
+locrate <- locality[[3]] %>% filter(!level == "Other")
+
+# Merge data and geometry
+loccount <-
+  loccount %>%  left_join(locgeo, by = c("level" = "name"))
+locrate <- locrate %>%  left_join(locgeo, by = c("level" = "name"))
+
+# Filter to hide communities with less than 5 cases
+loccount <- loccount %>% filter(ClientCount > 5)
+
+# Define how values will be collated into 'bin' groups
+locrate$bin <-
+  cut(
+    locrate$ClientsPer100Pop,
+    breaks = c(-1, 0, 0.1, 0.5, 1, 2, 3, 5, 100),
+    labels = c(
+      "Zero",
+      ">0-0.1%",
+      ">0.1-0.5%",
+      ">0.5-1%",
+      ">1-2%",
+      ">2-3%",
+      ">3-5%",
+      ">5%"
+    ),
+    include.lowest = TRUE,
+    include.highest = TRUE
+  )
+
+# # Calculate rank
+# loccount<- loccount %>%
+#   top_n(10, ClientCount) %>%
+#   mutate(rank = rank(-ClientCount))
+
+
+# calculate count binning
+inc = round(max(loccount$ClientCount) + 50, -2) / 5 #round to nearest 10
+breaks = c(-1, 0.1, 5, 10,  inc / 2 , inc, inc * 2, inc * 3, 100000)
+loccount$bin <- cut(
+  loccount$ClientCount,
+  breaks = breaks,
+  labels = c(
+    "Zero",
+    "1-5",
+    ">5-10",
+    paste0(">10-", inc / 2),
+    paste0(">", inc / 2, "-", inc),
+    paste0(">", inc, "-", inc * 2),
+    paste0(">", inc * 2, "-", inc * 3),
+    paste0(">", inc * 3)
+  ),
+  include.lowest = TRUE,
+  include.highest = TRUE
+)
+
+# Repair sf class
+loccount <- st_as_sf(loccount) %>% arrange(ClientCount) #arrange to ensure correct layering in ggplot
+
+
+
+# Create plot
+ggplot()  +
+  facet_wrap(vars(Sex, ServiceUserType), ncol = 3) +
+  theme_void()   +
+  geom_sf(
+    data = CouncilsMap,
+    # council outline
+    color = "steelblue",
+    fill = "palegreen",
+    size = 0.2,
+    show.legend = FALSE
+  ) +
+  geom_point(
+    data = loccount,
+    # locality point
+    mapping = aes(x = x,
+                  y = y,
+                  colour = bin),
+    shape = "circle",
+    size = 8,
+    alpha = 0.8,
+    show.legend = FALSE
+  ) +
+  scale_fill_manual(
+    # legend scale
+    values = my_palette,
+    na.value = "transparent",
+    guide = guide_legend(
+      label.position = "bottom",
+      title.position = 'top',
+      nrow = 1,
+      title = paste0(HomeCouncil, " ADP Activity in Localities with more than 5 Clients")
+    )
+  ) +
+  scale_colour_manual(values = my_palette,
+                      na.value = "transparent") +
+  theme(
+    legend.background = element_blank(),
+    legend.key = element_blank(),
+    legend.position = "bottom",
+    legend.direction = "horizontal",
+    legend.title.align = 0.5,
+    legend.justification = "centre",
+    legend.title =  element_text(
+      size = 10 ,
+      color = "black",
+      margin = margin(b = 0.1,
+                      t = 0,
+                      unit = "cm")
+    ),
+    legend.text =   element_text(
+      size = 10 ,
+      color = "black",
+      margin = margin(b = 0.0,
+                      t = 0.0,
+                      unit = "cm")
+    ),
+    legend.key.width = unit(2, 'cm'),
+    legend.key.height = unit(0.3, 'cm')
+  ) +
+  geom_sf(
+    loccount,
+    # outline of locality
+    mapping = aes(fill = bin),
+    colour = "black",
+    size = 0.2
+  ) +
+  labs(
+    caption = "Source: DAISy",
+    tag = waiver(),
+    alt = paste0(
+      "Map showing count above 5 of ",
+      HomeCouncil,
+      " ADP Clients in main localities"
+    ),
+  ) +
+  geom_text_repel(
+    data = loccount,
+    aes(x = x, y = y, label = level),
+    size = 4,
+    family = chartfont,
+    segment.colour = "darkgrey",
+    segment.size = 0.5,
+    min.segment.length = unit(0.4, "cm"),
+    segment.ncp = 4,
+    segment.curvature = -1e-20,
+    xlim = c(-Inf, Inf),
+    ylim = c(-Inf, Inf),
+    nudge_x = 0,
+    nudge_y = 0,
+    max.overlaps = Inf,
+    max.time = 5,
+    max.iter = 1000000,
+    point.size = 3,
+    point.padding = 0.2,
+    box.padding = 0.3,
+    force_pull = 2,
+    force = 10,
+    direction = "both",
+    seed = 1,
+    show.legend = FALSE,
+    na.rm = TRUE
+  ) + coord_sf(clip = "off")
+
+
++ coord_fixed()
+
+
+p

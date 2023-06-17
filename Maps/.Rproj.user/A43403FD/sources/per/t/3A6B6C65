@@ -1,0 +1,26 @@
+{
+    "id": "3A6B6C65",
+    "path": "~/R/ADP/DAISy/Daisy_Analysis.R",
+    "project_path": null,
+    "type": "r_source",
+    "hash": "779717427",
+    "contents": "",
+    "dirty": false,
+    "created": 1669566366831.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "403,23",
+        "scrollLine": "390"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1669482858,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1669482858,
+    "read_only": false,
+    "read_only_alternatives": []
+}

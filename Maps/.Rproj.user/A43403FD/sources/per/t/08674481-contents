@@ -1,0 +1,508 @@
+# Test script to figure out how best to manage google api keys
+
+#
+#
+library(googleway)
+library(utils)
+library(ggmap)
+library(sf)
+library(raster)
+
+# Get Google Maps API Key #######
+GoogleAPIKey <- Sys.getenv("GoogleAPIKey")
+if (GoogleAPIKey == "") {
+  check <- 0
+  while (check == 0) {
+    if (menu(c("Yes", "No"),
+             title = "Have Valid API Key?",
+             graphics = TRUE)
+        == 1) {
+      GoogleAPIKey <-
+        rstudioapi::askForPassword("Please enter a valid Google Maps API Key")
+      test <-
+        google_places(
+          search_string = 'mexican food',
+          location = c(35.77936902425637, -78.63995745574967),
+          radius = 20,
+          key = GoogleAPIKey
+        )
+      ifelse(test[4] == "OK", check <- 1, check <- 0) # check if key valid
+    } else {
+      stop("Sorry. You need a valid Google Maps API Key to Continue")
+    } # end second if
+  } #end while
+  print("Key OK")
+  Sys.setenv(GoogleAPIKey = GoogleAPIKey)
+} #end first if
+register_google(key = GoogleAPIKey) # register key to use ggmap
+# Get boundary info ########
+if (file.exists("./data/CouncilsMap.rds"))
+{
+  CouncilsMap <- readRDS(file = "./data/CouncilsMap.rds")
+} else {
+  CouncilsMap <- st_read(
+    dsn = "./data/raw/district_borough_unitary_region.shp",
+    stringsAsFactors = TRUE,
+    quiet = TRUE,
+    as_tibble = TRUE
+  )  %>% filter(substr(CODE, 1, 1) == "S") %>%
+    select(Council = NAME,
+           CouncilArea2019Code = CODE,
+           geometry) %>%
+    st_make_valid() %>% st_transform("EPSG:27700") #Transform coordinates to British National Grid format
+  saveRDS(CouncilsMap, file =  "./data/CouncilsMap.rds")
+}
+
+CouncilsMap <- CouncilsMap %>% dplyr::filter(Council == "Aberdeenshire")
+CouncilsMap2 <- st_transform(CouncilsMap, crs =4326)
+bounds <- st_bbox(CouncilsMap2)
+names(bounds$xmin) <-"left"
+names(bounds$ymin) <-"bottom"
+names(bounds$xmax) <-"right"
+names(bounds$ymax) <-"top"
+bbox<- c(bounds$xmin, bounds$ymin, bounds$xmax, bounds$ymax)
+
+########
+# GEt google map
+map <-get_stamenmap(zoom=10, bbox = bbox,  maptype = "watercolor", crop =TRUE, messaging=FALSE, where = "./data")
+
+# map <- projectRaster(map, crs =27700)
+
+
+
+ggplot() +
+  theme_void()   +geom_sf(
+    data = CouncilsMap,
+    # council outline
+    color = "steelblue",
+   fill = "transparent",
+    size = 0.2,
+    show.legend = FALSE
+  ) + geom_raster(data=map)
+
+
+
+
+
+# get the map info
+map <- get_googlemap("Montpellier, France", zoom = 8, maptype = "terrain")
+
+# Plot it
+ggmap(map) +
+  theme_void() +
+  ggtitle("terrain") +
+  theme(
+    plot.title = element_text(colour = "orange"),
+    panel.border = element_rect(colour = "grey", fill=NA, size=2)
+  )
+
+#
+#
+library(tiff)
+library(raster)
+
+
+s<- raster("./data/scotelevation.tif", native=TRUE)
+
+plot(s)
+
+
+
+
+
+site_map = ggmap(get_stamenmap(bbox, maptype = "terrain-background", zoom = 2))+
+  theme_bw() +
+  labs(x = "Longitude", y = "Latitude")
+
+plot(site_map)
+
+
+qmap("AB210YA", zoom = 16, maptype = 'satellite')
+
+
+# tutorial: # https://rpubs.com/nickbearman/r-google-map-making
+
+#Download
+download.file("https://raw.githubusercontent.com/nickbearman/r-google-map-making-20140708/master/police-uk-2014-04-merseyside-street.csv", "police-uk-2014-04-merseyside-street.csv") #if you are running this on OSX, you will need to replace method = "internal" with method = "curl"
+#Read the data into a variable called crimes
+crimes <- read.csv("police-uk-2014-04-merseyside-street.csv")
+
+#load library
+library(sp)
+#change the crimes data into a SpatialPointsDataFrame
+coords <- cbind(Longitude = as.numeric(as.character(crimes$Longitude)), Latitude = as.numeric(as.character(crimes$Latitude)))
+crime.pts <- SpatialPointsDataFrame(coords, crimes[, -(5:6)], proj4string = CRS("+init=epsg:4326"))
+
+#plot just the crime points
+plot(crime.pts, pch = ".", col = "darkred")
+
+
+#plot the  hybrid Google Maps basemap
+map <- qmap('Liverpool, England', zoom = 12, maptype = 'watercolor')
+#plot the crime points on top
+map + geom_point(data = crimes, aes(x = Longitude, y = Latitude), color="red", size=3, alpha=0.5)
+
+
+#download file
+download.file("https://raw.githubusercontent.com/nickbearman/r-google-map-making-20140708/master/MerseyLSOA.zip", "MerseyLSOA.zip")
+#unzip file
+unzip("MerseyLSOA.zip")
+#load library
+library(maptools)
+#read in as BNG
+merseyside <- readShapeSpatial('MerseyLSOA/england_low_soa_2001', proj4string = CRS("+init=epsg:27700"))
+
+plot(merseyside)
+
+#reproject to lat long
+merseyside <- spTransform(merseyside, CRS("+init=epsg:4326"))
+#convert to a data.frame for use with ggplot2/ggmap
+data <- fortify(merseyside)
+#plot, centered on Melling to show the whole Merseyside area
+qmap('Melling, England', zoom = 10) +
+  geom_polygon(aes(x = long, y = lat, group = group), data = data,
+               colour = 'white', fill = 'black', alpha = .4, size = .3)
+
+asb.pts <- crime.pts[crime.pts$Crime.type == "Anti-social behaviour", ]
+
+#Plot Merseyside
+plot(merseyside)
+#Add the crime data
+plot(asb.pts, pch = ".", col = "red", add = TRUE)
+
+
+#This is another R package,  allowing GIS overlay operations
+library(rgeos)
+#This defines a new R function - it counts how many points fall into each polygon
+poly.counts <- function (pts, polys) colSums(gContains(polys, pts, byid = TRUE))
+#The line below actually counts the number of crimes in each LSOA
+asb.count <- poly.counts(asb.pts,merseyside)
+
+# First, add an ASB event count column to the 'mersey.lsoa' SpatialPolygonsDataFrame
+merseyside@data$asb.count <- asb.count
+# Fortify the merseyside data for use with ggplot
+data <- fortify(merseyside, region = "zonecode")
+# Add on the asb.count to the object data
+data <- merge(data,merseyside@data, by.x="id", by.y = "zonecode")
+#plot, centered on Melling to show the whole Merseyside area
+qmap('Melling, England', zoom = 10) +
+  geom_polygon(aes(x = long, y = lat, group = group, fill = asb.count), data = data)
+
+from <- 'St Georges Hall, Liverpool, UK'
+to <- 'L69 3GP'
+route_df <- route(from, to, structure = 'route', mode = 'walking')
+qmap('Warren St, Liverpool, England', zoom = 16) +
+  geom_path(
+    aes(x = lon, y = lat),  colour = 'red', size = 1.5,
+    data = route_df, lineend = 'round')
+
+
+#plot the hybrid Google Maps basemap
+map <- qmap('Liverpool, england', zoom = 12, maptype = 'hybrid')
+#plot the crime points on top
+map + geom_point(data = crimes, aes(x = Longitude, y = Latitude), color="red", size=3, alpha=0.5)
+
+
+#plot the roads Google Maps basemap
+map <- qmap('Liverpool, England', zoom = 12, maptype = 'roadmap')
+#plot the density map
+map + stat_density2d(
+  aes(x = Longitude, y = Latitude, fill = ..level.., alpha = ..level..*2),
+  size = 2, bins = 5, data = crimes, geom = "polygon") +
+  scale_fill_gradient(low = "black", high = "red")
+
+
+#tutotial : https://www.r-bloggers.com/2018/08/how-to-quickly-enrich-a-map-with-natural-and-anthropic-details/
+#
+
+my_points.df <-
+  data.frame(lon = c(9.442366, 9.30222, 9.304297, 9.322077,
+                     9.304432, 9.302683, 9.321543, 9.301541, 9.402329, 9.285115, 9.319564,
+                     9.33959, 9.33367, 9.261872, 9.308274, 9.3011, 9.45355, 9.32527,
+                     9.25892, 9.303647),
+             lat = c(45.952427, 46.041, 45.958035, 45.922367,
+                     45.953438, 45.966248, 45.919487, 45.959721, 46.05933, 46.009094,
+                     45.917286, 46.081585, 45.997231, 45.98764, 46.076529, 45.959641,
+                     45.972649, 45.9151, 46.055069, 46.07671))
+
+
+library(sf)
+my_points.sf <- st_as_sf(my_points.df, coords = c("lon", "lat"), crs = 4326)
+
+my_bbox <- c(xmin = min(my_points.df$lon),
+             xmax = max(my_points.df$lon),
+             ymin = min(my_points.df$lat),
+             ymax = max(my_points.df$lat))
+
+my_bbox.m <-
+  matrix(c(my_bbox['xmin'], my_bbox['xmin'], my_bbox['xmax'], my_bbox['xmax'], my_bbox['xmin'],
+           my_bbox['ymax'], my_bbox['ymin'], my_bbox['ymin'], my_bbox['ymax'], my_bbox['ymax']),
+         ncol = 2)
+my_bbox.sf <- st_geometry(st_polygon(x = list(my_bbox.m)))
+st_crs(my_bbox.sf) <- 4326
+
+my_bbox_buff_2500.sf <-
+  my_bbox.sf %>%
+  st_transform(crs = 32632) %>%
+  st_buffer(dist = 2500) %>% # 2.5 kilometers
+  st_transform(crs = 4326)
+
+my_bbox_buff_5000.sf <-
+  my_bbox.sf %>%
+  st_transform(crs = 32632) %>%
+  st_buffer(dist = 5000) %>% # 5 kilometers
+  st_transform(crs = 4326)
+
+my_bbox_buff_25000.sf <-
+  my_bbox.sf %>%
+  st_transform(crs = 32632) %>%
+  st_buffer(dist = 25000) %>% # 25 kilometers
+  st_transform(crs = 4326)
+
+library(ggplot2)
+
+my_world_map <- map_data('world')
+my_world_map <- my_world_map[my_world_map$region %in% c("Italy","Switzerland"),]
+
+ggplot() +
+  geom_sf(data = my_points.sf) +
+  geom_sf(data = my_bbox_buff_2500.sf, fill = NA) +
+  coord_sf(xlim = c(st_bbox(my_bbox_buff_25000.sf)['xmin'], st_bbox(my_bbox_buff_25000.sf)['xmax']),
+           ylim = c(st_bbox(my_bbox_buff_25000.sf)['ymin'], st_bbox(my_bbox_buff_25000.sf)['ymax'])) +
+  geom_polygon(data = my_world_map,
+               aes(x=long, y = lat, group = group,
+                   fill = region), colour = 'black', alpha = .4) +
+  theme_bw()
+
+library(raster)
+dem.raster <- getData("SRTM", lat = 46.0146, lon = 9.344197, download = TRUE)
+
+dem.raster <- crop(dem.raster, as(my_bbox_buff_25000.sf, 'Spatial'), snap='out')
+
+dem.m  <-  rasterToPoints(dem.raster)
+dem.df <-  data.frame(dem.m)
+colnames(dem.df) = c("lon", "lat", "alt")
+
+ggplot() +
+  geom_raster(data = dem.df, aes(lon, lat, fill = alt), alpha = .45) +
+  scale_fill_gradientn(colours = terrain.colors(100)) +
+  geom_sf(data = my_bbox_buff_2500.sf, fill = NA) +
+  coord_sf(xlim = c(st_bbox(my_bbox_buff_25000.sf)['xmin'], st_bbox(my_bbox_buff_25000.sf)['xmax']),
+           ylim = c(st_bbox(my_bbox_buff_25000.sf)['ymin'], st_bbox(my_bbox_buff_25000.sf)['ymax'])) +
+  geom_polygon(data = my_world_map,
+               aes(x=long, y = lat, group = group), fill = NA, colour = 'black') +
+  theme_bw()
+
+slope.raster <- terrain(dem.raster, opt='slope')
+aspect.raster <- terrain(dem.raster, opt='aspect')
+hill.raster <- hillShade(slope.raster, aspect.raster, 40, 270)
+
+hill.m <- rasterToPoints(hill.raster)
+hill.df <-  data.frame(hill.m)
+colnames(hill.df) <- c("lon", "lat", "hill")
+
+ggplot() +
+  geom_raster(data = hill.df, aes(lon, lat, fill = hill), alpha = .45) +
+  scale_fill_gradientn(colours = grey.colors(100)) +
+  geom_sf(data = my_bbox_buff_2500.sf, fill = NA) +
+  coord_sf(xlim = c(st_bbox(my_bbox_buff_25000.sf)['xmin'], st_bbox(my_bbox_buff_25000.sf)['xmax']),
+           ylim = c(st_bbox(my_bbox_buff_25000.sf)['ymin'], st_bbox(my_bbox_buff_25000.sf)['ymax'])) +
+  geom_polygon(data = my_world_map,
+               aes(x=long, y = lat, group = group), fill = NA, colour = 'black') +
+  theme_bw()
+
+library(osmdata)
+osm_lakes.sf <-
+  opq(bbox = st_bbox(my_bbox_buff_25000.sf)) %>%
+  add_osm_feature(key = 'water', value = 'lake') %>%
+  osmdata_sf()
+osm_lakes.sf <- osm_lakes.sf$osm_multipolygons
+
+osm_rivers.sf <-
+  opq(bbox = st_bbox(my_bbox_buff_25000.sf)) %>%
+  add_osm_feature(key = 'waterway', value = 'river') %>%
+  osmdata_sf()
+osm_rivers.sf <- osm_rivers.sf$osm_lines
+
+ggplot() +
+  geom_raster(data = hill.df, aes(lon, lat, fill = hill), alpha = .45) +
+  scale_fill_gradientn(colours = grey.colors(100)) +
+  geom_sf(data = osm_lakes.sf, fill = '#9ecae1', colour = NA) +
+  geom_sf(data = osm_rivers.sf, colour = '#9ecae1', size = 0.05) +
+  geom_sf(data = my_bbox_buff_2500.sf, fill = NA) +
+  coord_sf(xlim = c(st_bbox(my_bbox_buff_25000.sf)['xmin'], st_bbox(my_bbox_buff_25000.sf)['xmax']),
+           ylim = c(st_bbox(my_bbox_buff_25000.sf)['ymin'], st_bbox(my_bbox_buff_25000.sf)['ymax'])) +
+  geom_polygon(data = my_world_map,
+               aes(x=long, y = lat, group = group), fill = NA, colour = 'black') +
+  theme_bw()
+
+osm_roads_primary.sf <-
+  opq(bbox = st_bbox(my_bbox_buff_5000.sf)) %>%
+  add_osm_feature(key = 'highway', value = 'trunk') %>%
+  osmdata_sf()
+osm_roads_primary.sf <- osm_roads_primary.sf$osm_lines
+
+osm_roads_secondary.sf <-
+  opq(bbox = st_bbox(my_bbox_buff_5000.sf)) %>%
+  add_osm_feature(key = 'highway', value = 'secondary') %>%
+  osmdata_sf()
+osm_roads_secondary.sf <- osm_roads_secondary.sf$osm_lines
+
+osm_roads_tertiary.sf <-
+  opq(bbox = st_bbox(my_bbox_buff_5000.sf)) %>%
+  add_osm_feature(key = 'highway', value = 'tertiary') %>%
+  osmdata_sf()
+osm_roads_tertiary.sf <- osm_roads_tertiary.sf$osm_lines
+
+ggplot() +
+  geom_raster(data = hill.df, aes(lon, lat, fill = hill), alpha = .45) +
+  scale_fill_gradientn(colours = grey.colors(100)) +
+  geom_sf(data = osm_lakes.sf, fill = '#9ecae1', colour = NA) +
+  geom_sf(data = osm_rivers.sf, colour = '#9ecae1', size = 0.05) +
+  geom_sf(data = osm_roads_primary.sf, colour = '#636363', size = 0.1) +
+  geom_sf(data = osm_roads_secondary.sf, colour = '#636363', size = 0.05) +
+  geom_sf(data = osm_roads_tertiary.sf, colour = '#636363', size = 0.02) +
+  geom_sf(data = my_bbox_buff_2500.sf, fill = NA) +
+  coord_sf(xlim = c(st_bbox(my_bbox_buff_5000.sf)['xmin'], st_bbox(my_bbox_buff_5000.sf)['xmax']),
+           ylim = c(st_bbox(my_bbox_buff_5000.sf)['ymin'], st_bbox(my_bbox_buff_5000.sf)['ymax'])) +
+  geom_polygon(data = my_world_map,
+               aes(x=long, y = lat, group = group), fill = NA, colour = 'black') +
+  theme_bw()
+
+osm_buildings.sf <-
+  opq(bbox = st_bbox(my_bbox_buff_2500.sf)) %>%
+  add_osm_feature(key = 'building') %>%
+  osmdata_sf()
+osm_buildings.sf <- osm_buildings.sf$osm_polygons
+osm_buildings_pnt.sf <-
+  osm_buildings.sf %>%
+  st_transform(crs = 32632) %>%
+  st_centroid() %>%
+  st_transform(crs = 4326)
+
+osm_roads_residential.sf <-
+  opq(bbox = st_bbox(my_bbox_buff_5000.sf)) %>%
+  add_osm_feature(key = 'highway', value = 'residential') %>%
+  osmdata_sf()
+osm_roads_residential.sf <- osm_roads_residential.sf$osm_lines
+osm_roads_residential_pnt.sf <-
+  osm_roads_residential.sf %>%
+  st_transform(crs = 32632) %>%
+  st_centroid() %>%
+  st_transform(crs = 4326)
+
+osm_roads_unclassified.sf <-
+  opq(bbox = st_bbox(my_bbox_buff_5000.sf)) %>%
+  add_osm_feature(key = 'highway', value = 'unclassified') %>%
+  osmdata_sf()
+osm_roads_unclassified.sf <- osm_roads_unclassified.sf$osm_lines
+osm_roads_unclassified_pnt.sf <-
+  osm_roads_unclassified.sf %>%
+  st_transform(crs = 32632) %>%
+  st_centroid() %>%
+  st_transform(crs = 4326)
+
+osm_residential_areas_pnt.df <-
+  rbind(
+    do.call(rbind,
+            st_geometry(osm_buildings_pnt.sf)),
+    do.call(rbind,
+            st_geometry(osm_roads_residential_pnt.sf)),
+    do.call(rbind,
+            st_geometry(osm_roads_unclassified_pnt.sf))) %>%
+  as.data.frame()
+colnames(osm_residential_areas_pnt.df) <- c('lon', 'lat')
+
+osm_residential_areas_pnt.sf <-
+  st_as_sf(osm_residential_areas_pnt.df, coords = c("lon", "lat"), crs = 4326)
+osm_residential_areas_pnt.sf <-
+  st_transform(osm_residential_areas_pnt.sf, 32632)
+
+library(dbscan)
+res <-  dbscan(osm_residential_areas_pnt.df, eps = 0.0005, minPts = 10)
+
+pop_dense_areas.sf <-
+  st_sf(id = 1:max(res$cluster),
+        geometry = st_sfc(lapply(1:max(res$cluster), function(x) st_geometrycollection())))
+st_crs(pop_dense_areas.sf) <- 4326
+pop_dense_areas.sf <- st_transform(pop_dense_areas.sf, 32632)
+
+for (cl in 1:max(res$cluster)) {
+  these_points <- osm_residential_areas_pnt.df[which(res$cluster == cl),]
+  this_chull <- chull(these_points)
+  this_mat <- as.matrix(these_points[this_chull,])
+  this_mat <- rbind(this_mat, this_mat[1,])
+  this_polygon <- st_geometry(st_polygon(x = list(this_mat)))
+  st_crs(this_polygon) <- 4326
+  this_polygon <- st_transform(this_polygon, 32632)
+  pop_dense_areas.sf$geometry[cl] <- this_polygon
+}
+
+pop_dense_areas.sf <- st_transform(pop_dense_areas.sf, 4326)
+
+library(dplyr)
+osm_villages.sf <-
+  opq(bbox = st_bbox(my_bbox_buff_2500.sf)) %>%
+  add_osm_feature(key = 'place', value = 'village') %>%
+  osmdata_sf()
+osm_villages.sf <- osm_villages.sf$osm_points
+
+osm_towns.sf <-
+  opq(bbox = st_bbox(my_bbox_buff_2500.sf)) %>%
+  add_osm_feature(key = 'place', value = 'town') %>%
+  osmdata_sf()
+osm_towns.sf <- osm_towns.sf$osm_points
+
+osm_larger_places.df <-
+  rbind(cbind(as.data.frame(osm_villages.sf)[,c('name','population')],
+              st_coordinates(osm_villages.sf)),
+        cbind(as.data.frame(osm_towns.sf)[,c('name','population')],
+              st_coordinates(osm_towns.sf))) %>%
+  mutate(population = as.numeric(as.character(population))) %>%
+  top_n(10, population)
+
+osm_larger_places.df$name <- gsub('(.{1,10})(\\s|$)', '\\1\n', osm_larger_places.df$name)
+
+
+ggplot() +
+
+  geom_raster(data = hill.df, aes(lon, lat, fill = hill), alpha = .45) +
+  scale_fill_gradientn(colours = grey.colors(100)) +
+
+  geom_sf(data = pop_dense_areas.sf, fill = '#fee08b', colour = NA, alpha = 0.9) +
+  geom_sf(data = osm_lakes.sf, fill = '#9ecae1', colour = NA) +
+  geom_sf(data = osm_rivers.sf, colour = '#9ecae1', size = 0.4) +
+  geom_sf(data = osm_roads_primary.sf, colour = '#636363', size = 0.1) +
+  geom_sf(data = osm_roads_secondary.sf, colour = '#636363', size = 0.08) +
+  geom_sf(data = osm_roads_tertiary.sf, colour = '#636363', size = 0.08) +
+  geom_sf(data = my_points.sf, shape = 5, colour = 'black', size = .5) +
+
+  geom_text(data = osm_larger_places.df, aes(x=X,y=Y,label=name), size = 2.5, alpha = .65) +
+
+  coord_sf(xlim = c(st_bbox(my_bbox_buff_2500.sf)['xmin'], st_bbox(my_bbox_buff_2500.sf)['xmax']),
+           ylim = c(st_bbox(my_bbox_buff_2500.sf)['ymin'], st_bbox(my_bbox_buff_2500.sf)['ymax'])) +
+  guides(fill=FALSE)+
+  labs(x=NULL, y=NULL) +
+  theme_bw()
+
+# https://timotheenivalis.github.io/Rnotebooks/R_maps.pdf
+
+download.file('https://github.com/robert-cope/RmapsWorkshopData/blob/master/data.zip?raw=true',
+              destfile='data.zip')
+unzip('data.zip')
+#Please try to work on your own computer rather than the server
+#and if you are asked about installing from source, choose no
+library(ggmap)
+
+m1 <- get_stamenmap( bbox = c(left = 110, bottom = -40, right = 160, top = -10),
+                     zoom = 4, maptype = "watercolor")
+
+ggmap(m1)
+
+m2 <- get_stamenmap( bbox = c(left = 110, bottom = -45, right = 160, top = -10),
+                     zoom = 4, maptype = "terrain-background")
+
+ggmap(m2)
+
+library(tidyverse)
+ites <- read_csv('data/Frogwatch/Frogwatch_sites.csv')
