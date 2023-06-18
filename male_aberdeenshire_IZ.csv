@@ -1,60 +1,60 @@
-n,IZcode,name,q,r,client count,population,clients per 100 pop
-East Cairngorms,S02001285,East Cairngorms,1,4,8,1534,0.52
-Aboyne and South Deeside,S02001286,Aboyne and South Deeside,2,4,21,2661,0.79
-Mearns and Laurencekirk,S02001287,Mearns and Laurencekirk,2,1,19,2242,0.85
-Mearns South and Benholm,S02001288,Mearns South and Benholm,2,0,18,2050,0.88
-Mearns North and Inverbervie,S02001289,Mearns North and Inverbervie,3,2,17,2793,0.61
-"Fetteresso, Netherley and Catter",S02001290,"Fetteresso, Netherley and Catter",4,2,13,2514,0.52
-Stonehaven South,S02001291,Stonehaven South,4,0,46,2468,1.86
-Stonehaven North,S02001292,Stonehaven North,4,1,26,2734,0.95
-Newtonhill,S02001293,Newtonhill,5,1,9,1438,0.63
-Portlethen,S02001294,Portlethen,5,2,6,2087,0.29
-Banchory-Devenick and Findon,S02001295,Banchory-Devenick and Findon,2,3,20,2986,0.67
-"Dunecht, Durris and Drumoak",S02001296,"Dunecht, Durris and Drumoak",4,4,7,2602,0.27
-Banchory East,S02001297,Banchory East,3,3,14,1994,0.7
-Banchory West,S02001298,Banchory West,4,3,12,1399,0.86
-Crathes and Torphins,S02001299,Crathes and Torphins,3,4,10,2182,0.46
-Cromar and Kildrummy,S02001300,Cromar and Kildrummy,2,5,18,2045,0.88
-Howe of Alford,S02001301,Howe of Alford,3,6,23,3304,0.7
-Kemnay,S02001302,Kemnay,3,5,21,1672,1.26
-Inverurie North,S02001303,Inverurie North,4,5,27,2570,1.05
-Inverurie South,S02001304,Inverurie South,5,6,43,2496,1.72
-Durno-Chapel of Garioch,S02001305,Durno-Chapel of Garioch,4,6,27,3992,0.68
-Kintore,S02001306,Kintore,5,4,16,2950,0.54
-Blackburn,S02001307,Blackburn,5,5,1,4240,0.02
-Westhill North and South,S02001308,Westhill North and South,6,4,6,2513,0.24
-Westhill Central,S02001309,Westhill Central,7,4,12,1850,0.65
-Garlogie and Elrick,S02001310,Garlogie and Elrick,6,3,8,1883,0.42
-Newmachar and Fintray,S02001311,Newmachar and Fintray,6,6,2,2094,0.1
-Balmedie and Potterton,S02001312,Balmedie and Potterton,7,6,3,2692,0.11
-Ellon East,S02001313,Ellon East,8,6,34,2953,1.15
-Ellon West,S02001314,Ellon West,8,7,25,1922,1.3
-Ythanside,S02001315,Ythanside,7,7,20,2466,0.81
-Ythsie,S02001316,Ythsie,6,7,15,3076,0.49
-Barrahill,S02001317,Barrahill,5,7,26,2512,1.04
-Fyvie-Rothie,S02001318,Fyvie-Rothie,6,8,21,2032,1.03
-"Insch, Oyne and Ythanwells",S02001319,"Insch, Oyne and Ythanwells",4,7,25,2527,0.99
-Clashindarroch,S02001320,Clashindarroch,2,7,15,2335,0.64
-Huntly,S02001321,Huntly,3,7,37,1949,1.9
-Auchterless and Monquhitter,S02001322,Auchterless and Monquhitter,5,8,7,1490,0.47
-Turriff,S02001323,Turriff,4,8,27,2089,1.29
-"Portsoy, Fordyce and Cornhill",S02001324,"Portsoy, Fordyce and Cornhill",3,9,17,1566,1.09
-Aberchirder and Whitehills,S02001325,Aberchirder and Whitehills,4,9,25,1957,1.28
-Banff,S02001326,Banff,5,10,48,1972,2.43
-Macduff,S02001327,Macduff,6,10,40,1910,2.09
-Gardenstown and King Edward,S02001328,Gardenstown and King Edward,5,9,11,1586,0.69
-New Pitsligo,S02001329,New Pitsligo,6,9,15,1480,1.01
-Deer and Mormond,S02001330,Deer and Mormond,7,9,26,2540,1.02
-Mintlaw,S02001331,Mintlaw,8,8,11,1193,0.92
-Auchnagatt,S02001332,Auchnagatt,7,8,12,1653,0.73
-Cruden,S02001333,Cruden,9,8,27,2209,1.22
-Peterhead Links,S02001334,Peterhead Links,10,8,51,2230,2.29
-Peterhead Bay,S02001335,Peterhead Bay,11,8,42,1181,3.56
-Peterhead Harbour,S02001336,Peterhead Harbour,10,9,135,3037,4.45
-Peterhead Ugieside,S02001337,Peterhead Ugieside,9,9,29,1982,1.46
-Longside and Rattray,S02001338,Longside and Rattray,8,9,51,3960,1.29
-Rosehearty and Strathbeg,S02001339,Rosehearty and Strathbeg,8,10,38,3188,1.19
-Fraserburgh Smiddyhill,S02001340,Fraserburgh Smiddyhill,9,11,23,1965,1.17
-Fraserburgh Lochpots,S02001341,Fraserburgh Lochpots,8,11,42,1100,3.82
-Fraserburgh Central-Academy,S02001342,Fraserburgh Central-Academy,9,12,40,1266,3.16
-Fraserburgh Harbour and Broadsea,S02001343,Fraserburgh Harbour and Broadsea,8,12,93,1683,5.53
+id,name,q,r,client count,population,clients per 100 pop
+S02001285,East Cairngorms,1,4,8,1534,0.52
+S02001286,Aboyne and South Deeside,2,4,21,2661,0.79
+S02001287,Mearns and Laurencekirk,2,1,19,2242,0.85
+S02001288,Mearns South and Benholm,2,0,18,2050,0.88
+S02001289,Mearns North and Inverbervie,3,2,17,2793,0.61
+S02001290,"Fetteresso, Netherley and Catter",4,2,13,2514,0.52
+S02001291,Stonehaven South,4,0,46,2468,1.86
+S02001292,Stonehaven North,4,1,26,2734,0.95
+S02001293,Newtonhill,5,1,9,1438,0.63
+S02001294,Portlethen,5,2,6,2087,0.29
+S02001295,Banchory-Devenick and Findon,2,3,20,2986,0.67
+S02001296,"Dunecht, Durris and Drumoak",4,4,7,2602,0.27
+S02001297,Banchory East,3,3,14,1994,0.7
+S02001298,Banchory West,4,3,12,1399,0.86
+S02001299,Crathes and Torphins,3,4,10,2182,0.46
+S02001300,Cromar and Kildrummy,2,5,18,2045,0.88
+S02001301,Howe of Alford,3,6,23,3304,0.7
+S02001302,Kemnay,3,5,21,1672,1.26
+S02001303,Inverurie North,4,5,27,2570,1.05
+S02001304,Inverurie South,5,6,43,2496,1.72
+S02001305,Durno-Chapel of Garioch,4,6,27,3992,0.68
+S02001306,Kintore,5,4,16,2950,0.54
+S02001307,Blackburn,5,5,1,4240,0.02
+S02001308,Westhill North and South,6,4,6,2513,0.24
+S02001309,Westhill Central,7,4,12,1850,0.65
+S02001310,Garlogie and Elrick,6,3,8,1883,0.42
+S02001311,Newmachar and Fintray,6,6,2,2094,0.1
+S02001312,Balmedie and Potterton,7,6,3,2692,0.11
+S02001313,Ellon East,8,6,34,2953,1.15
+S02001314,Ellon West,8,7,25,1922,1.3
+S02001315,Ythanside,7,7,20,2466,0.81
+S02001316,Ythsie,6,7,15,3076,0.49
+S02001317,Barrahill,5,7,26,2512,1.04
+S02001318,Fyvie-Rothie,6,8,21,2032,1.03
+S02001319,"Insch, Oyne and Ythanwells",4,7,25,2527,0.99
+S02001320,Clashindarroch,2,7,15,2335,0.64
+S02001321,Huntly,3,7,37,1949,1.9
+S02001322,Auchterless and Monquhitter,5,8,7,1490,0.47
+S02001323,Turriff,4,8,27,2089,1.29
+S02001324,"Portsoy, Fordyce and Cornhill",3,9,17,1566,1.09
+S02001325,Aberchirder and Whitehills,4,9,25,1957,1.28
+S02001326,Banff,5,10,48,1972,2.43
+S02001327,Macduff,6,10,40,1910,2.09
+S02001328,Gardenstown and King Edward,5,9,11,1586,0.69
+S02001329,New Pitsligo,6,9,15,1480,1.01
+S02001330,Deer and Mormond,7,9,26,2540,1.02
+S02001331,Mintlaw,8,8,11,1193,0.92
+S02001332,Auchnagatt,7,8,12,1653,0.73
+S02001333,Cruden,9,8,27,2209,1.22
+S02001334,Peterhead Links,10,8,51,2230,2.29
+S02001335,Peterhead Bay,11,8,42,1181,3.56
+S02001336,Peterhead Harbour,10,9,135,3037,4.45
+S02001337,Peterhead Ugieside,9,9,29,1982,1.46
+S02001338,Longside and Rattray,8,9,51,3960,1.29
+S02001339,Rosehearty and Strathbeg,8,10,38,3188,1.19
+S02001340,Fraserburgh Smiddyhill,9,11,23,1965,1.17
+S02001341,Fraserburgh Lochpots,8,11,42,1100,3.82
+S02001342,Fraserburgh Central-Academy,9,12,40,1266,3.16
+S02001343,Fraserburgh Harbour and Broadsea,8,12,93,1683,5.53

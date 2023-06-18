@@ -32,9 +32,16 @@ with open("male_aberdeenshire_IZ.hexjson", "w") as outf:
 #     outf.write(jsom.dumps(hexjson))    
 
 with open("male_aberdeenshire_IZ.csv", "w", newline='') as outf:
-    fieldnames = ['n', 'IZcode', 'name', 'q', 'r',
+    fieldnames = ['id', 'name', 'q', 'r',
                   'client count', 'population', 'clients per 100 pop']
     writer = csv.DictWriter(outf, fieldnames=fieldnames)
     writer.writeheader()
     for k, d in male_hexes.items():
-        writer.writerow(d)
+        writer.writerow({'id': k,
+         'name': d['name'],
+         'q': d['q'],
+         'r': d['r'],
+         'client count': d['client count'],
+         'population': d['population'],
+         'clients per 100 pop': d['clients per 100 pop']})
+        
