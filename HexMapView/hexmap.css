@@ -1,0 +1,10 @@
+#hexmap2 { height: 500px; width: 100%; animation-duration: 0.3s; }
+#hexmap2 .hex-cell { stroke: white; stroke-width: 2; transition: fill 0.3s ease-in, stroke 0.3s ease-in, stroke-width 0.3s ease-in; }
+/* Make the hexagon larger when hovered */
+#hexmap2 .hex-cell.hover { stroke-width: 4px; transform: scale(1.75); }
+/* Set the on and off styles for the text labels */
+#hexmap2 .hex-label tspan.on { display: none; }
+#hexmap2 .hex-label tspan.off { display: block; }
+#hexmap2 .hex-label tspan.big { font-weight: bold; font-size: 1.2em; }
+#hexmap2 .hex-label.hover tspan.on { display: block; }
+#hexmap2 .hex-label.hover tspan.off { display: none; }
