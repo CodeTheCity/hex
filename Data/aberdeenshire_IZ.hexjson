@@ -1,4 +1,4 @@
-{
+const mapData = {
     "layout": "odd-r",
     "hexes": {
         "1": {
@@ -415,4 +415,4 @@
             "r": 12
         }
     }
-}
+};

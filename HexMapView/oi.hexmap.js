@@ -178,8 +178,9 @@
 			h = this.areas[r];
 			style = clone(this.style['default']);
 			cls = "";
+			if(h.label) setAttr(h.label,{'class':'hex-label'});
 			if(h.active) style.fill = h.fillcolour;
-			if(h.hover) cls += ' hover';
+			// if(h.hover) setAttr(h.label,{'class':'hex-label.hover'}); //cls += ' hover';
 			if(h.selected){
 				for(p in this.style.selected){
 					if(this.style.selected[p]) style[p] = this.style.selected[p];
@@ -189,7 +190,7 @@
 			if(this.mapping.hexes[r]['class']) cls += " "+this.mapping.hexes[r]['class'];
 			style['class'] = 'hex-cell'+cls;
 			setAttr(h.hex,style);
-			if(h.label) setAttr(h.label,{'class':'hex-label'+cls});
+			// if(h.label) setAttr(h.label,{'class':'hex-label'+cls});
 			return h;
 		};
 		
