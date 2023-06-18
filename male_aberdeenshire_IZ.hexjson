@@ -1,1 +1,595 @@
-{"layout": "odd-r", "hexes": {"S02001285": {"n": "East Cairngorms", "IZcode": "S02001285", "name": "East Cairngorms", "q": 1, "r": 4, "client count": "8", "population": "1534", "clients per 100 pop": "0.52"}, "S02001286": {"n": "Aboyne and South Deeside", "IZcode": "S02001286", "name": "Aboyne and South Deeside", "q": 2, "r": 4, "client count": "21", "population": "2661", "clients per 100 pop": "0.79"}, "S02001287": {"n": "Mearns and Laurencekirk", "IZcode": "S02001287", "name": "Mearns and Laurencekirk", "q": 2, "r": 1, "client count": "19", "population": "2242", "clients per 100 pop": "0.85"}, "S02001288": {"n": "Mearns South and Benholm", "IZcode": "S02001288", "name": "Mearns South and Benholm", "q": 2, "r": 0, "client count": "18", "population": "2050", "clients per 100 pop": "0.88"}, "S02001289": {"n": "Mearns North and Inverbervie", "IZcode": "S02001289", "name": "Mearns North and Inverbervie", "q": 3, "r": 2, "client count": "17", "population": "2793", "clients per 100 pop": "0.61"}, "S02001290": {"n": "Fetteresso, Netherley and Catter", "IZcode": "S02001290", "name": "Fetteresso, Netherley and Catter", "q": 4, "r": 2, "client count": "13", "population": "2514", "clients per 100 pop": "0.52"}, "S02001291": {"n": "Stonehaven South", "IZcode": "S02001291", "name": "Stonehaven South", "q": 4, "r": 0, "client count": "46", "population": "2468", "clients per 100 pop": "1.86"}, "S02001292": {"n": "Stonehaven North", "IZcode": "S02001292", "name": "Stonehaven North", "q": 4, "r": 1, "client count": "26", "population": "2734", "clients per 100 pop": "0.95"}, "S02001293": {"n": "Newtonhill", "IZcode": "S02001293", "name": "Newtonhill", "q": 5, "r": 1, "client count": "9", "population": "1438", "clients per 100 pop": "0.63"}, "S02001294": {"n": "Portlethen", "IZcode": "S02001294", "name": "Portlethen", "q": 5, "r": 2, "client count": "6", "population": "2087", "clients per 100 pop": "0.29"}, "S02001295": {"n": "Banchory-Devenick and Findon", "IZcode": "S02001295", "name": "Banchory-Devenick and Findon", "q": 2, "r": 3, "client count": "20", "population": "2986", "clients per 100 pop": "0.67"}, "S02001296": {"n": "Dunecht, Durris and Drumoak", "IZcode": "S02001296", "name": "Dunecht, Durris and Drumoak", "q": 4, "r": 4, "client count": "7", "population": "2602", "clients per 100 pop": "0.27"}, "S02001297": {"n": "Banchory East", "IZcode": "S02001297", "name": "Banchory East", "q": 3, "r": 3, "client count": "14", "population": "1994", "clients per 100 pop": "0.7"}, "S02001298": {"n": "Banchory West", "IZcode": "S02001298", "name": "Banchory West", "q": 4, "r": 3, "client count": "12", "population": "1399", "clients per 100 pop": "0.86"}, "S02001299": {"n": "Crathes and Torphins", "IZcode": "S02001299", "name": "Crathes and Torphins", "q": 3, "r": 4, "client count": "10", "population": "2182", "clients per 100 pop": "0.46"}, "S02001300": {"n": "Cromar and Kildrummy", "IZcode": "S02001300", "name": "Cromar and Kildrummy", "q": 2, "r": 5, "client count": "18", "population": "2045", "clients per 100 pop": "0.88"}, "S02001301": {"n": "Howe of Alford", "IZcode": "S02001301", "name": "Howe of Alford", "q": 3, "r": 6, "client count": "23", "population": "3304", "clients per 100 pop": "0.7"}, "S02001302": {"n": "Kemnay", "IZcode": "S02001302", "name": "Kemnay", "q": 3, "r": 5, "client count": "21", "population": "1672", "clients per 100 pop": "1.26"}, "S02001303": {"n": "Inverurie North", "IZcode": "S02001303", "name": "Inverurie North", "q": 4, "r": 5, "client count": "27", "population": "2570", "clients per 100 pop": "1.05"}, "S02001304": {"n": "Inverurie South", "IZcode": "S02001304", "name": "Inverurie South", "q": 5, "r": 6, "client count": "43", "population": "2496", "clients per 100 pop": "1.72"}, "S02001305": {"n": "Durno-Chapel of Garioch", "IZcode": "S02001305", "name": "Durno-Chapel of Garioch", "q": 4, "r": 6, "client count": "27", "population": "3992", "clients per 100 pop": "0.68"}, "S02001306": {"n": "Kintore", "IZcode": "S02001306", "name": "Kintore", "q": 5, "r": 4, "client count": "16", "population": "2950", "clients per 100 pop": "0.54"}, "S02001307": {"n": "Blackburn", "IZcode": "S02001307", "name": "Blackburn", "q": 5, "r": 5, "client count": "1", "population": "4240", "clients per 100 pop": "0.02"}, "S02001308": {"n": "Westhill North and South", "IZcode": "S02001308", "name": "Westhill North and South", "q": 6, "r": 4, "client count": "6", "population": "2513", "clients per 100 pop": "0.24"}, "S02001309": {"n": "Westhill Central", "IZcode": "S02001309", "name": "Westhill Central", "q": 7, "r": 4, "client count": "12", "population": "1850", "clients per 100 pop": "0.65"}, "S02001310": {"n": "Garlogie and Elrick", "IZcode": "S02001310", "name": "Garlogie and Elrick", "q": 6, "r": 3, "client count": "8", "population": "1883", "clients per 100 pop": "0.42"}, "S02001311": {"n": "Newmachar and Fintray", "IZcode": "S02001311", "name": "Newmachar and Fintray", "q": 6, "r": 6, "client count": "2", "population": "2094", "clients per 100 pop": "0.1"}, "S02001312": {"n": "Balmedie and Potterton", "IZcode": "S02001312", "name": "Balmedie and Potterton", "q": 7, "r": 6, "client count": "3", "population": "2692", "clients per 100 pop": "0.11"}, "S02001313": {"n": "Ellon East", "IZcode": "S02001313", "name": "Ellon East", "q": 8, "r": 6, "client count": "34", "population": "2953", "clients per 100 pop": "1.15"}, "S02001314": {"n": "Ellon West", "IZcode": "S02001314", "name": "Ellon West", "q": 8, "r": 7, "client count": "25", "population": "1922", "clients per 100 pop": "1.3"}, "S02001315": {"n": "Ythanside", "IZcode": "S02001315", "name": "Ythanside", "q": 7, "r": 7, "client count": "20", "population": "2466", "clients per 100 pop": "0.81"}, "S02001316": {"n": "Ythsie", "IZcode": "S02001316", "name": "Ythsie", "q": 6, "r": 7, "client count": "15", "population": "3076", "clients per 100 pop": "0.49"}, "S02001317": {"n": "Barrahill", "IZcode": "S02001317", "name": "Barrahill", "q": 5, "r": 7, "client count": "26", "population": "2512", "clients per 100 pop": "1.04"}, "S02001318": {"n": "Fyvie-Rothie", "IZcode": "S02001318", "name": "Fyvie-Rothie", "q": 6, "r": 8, "client count": "21", "population": "2032", "clients per 100 pop": "1.03"}, "S02001319": {"n": "Insch, Oyne and Ythanwells", "IZcode": "S02001319", "name": "Insch, Oyne and Ythanwells", "q": 4, "r": 7, "client count": "25", "population": "2527", "clients per 100 pop": "0.99"}, "S02001320": {"n": "Clashindarroch", "IZcode": "S02001320", "name": "Clashindarroch", "q": 2, "r": 7, "client count": "15", "population": "2335", "clients per 100 pop": "0.64"}, "S02001321": {"n": "Huntly", "IZcode": "S02001321", "name": "Huntly", "q": 3, "r": 7, "client count": "37", "population": "1949", "clients per 100 pop": "1.9"}, "S02001322": {"n": "Auchterless and Monquhitter", "IZcode": "S02001322", "name": "Auchterless and Monquhitter", "q": 5, "r": 8, "client count": "7", "population": "1490", "clients per 100 pop": "0.47"}, "S02001323": {"n": "Turriff", "IZcode": "S02001323", "name": "Turriff", "q": 4, "r": 8, "client count": "27", "population": "2089", "clients per 100 pop": "1.29"}, "S02001324": {"n": "Portsoy, Fordyce and Cornhill", "IZcode": "S02001324", "name": "Portsoy, Fordyce and Cornhill", "q": 3, "r": 9, "client count": "17", "population": "1566", "clients per 100 pop": "1.09"}, "S02001325": {"n": "Aberchirder and Whitehills", "IZcode": "S02001325", "name": "Aberchirder and Whitehills", "q": 4, "r": 9, "client count": "25", "population": "1957", "clients per 100 pop": "1.28"}, "S02001326": {"n": "Banff", "IZcode": "S02001326", "name": "Banff", "q": 5, "r": 10, "client count": "48", "population": "1972", "clients per 100 pop": "2.43"}, "S02001327": {"n": "Macduff", "IZcode": "S02001327", "name": "Macduff", "q": 6, "r": 10, "client count": "40", "population": "1910", "clients per 100 pop": "2.09"}, "S02001328": {"n": "Gardenstown and King Edward", "IZcode": "S02001328", "name": "Gardenstown and King Edward", "q": 5, "r": 9, "client count": "11", "population": "1586", "clients per 100 pop": "0.69"}, "S02001329": {"n": "New Pitsligo", "IZcode": "S02001329", "name": "New Pitsligo", "q": 6, "r": 9, "client count": "15", "population": "1480", "clients per 100 pop": "1.01"}, "S02001330": {"n": "Deer and Mormond", "IZcode": "S02001330", "name": "Deer and Mormond", "q": 7, "r": 9, "client count": "26", "population": "2540", "clients per 100 pop": "1.02"}, "S02001331": {"n": "Mintlaw", "IZcode": "S02001331", "name": "Mintlaw", "q": 8, "r": 8, "client count": "11", "population": "1193", "clients per 100 pop": "0.92"}, "S02001332": {"n": "Auchnagatt", "IZcode": "S02001332", "name": "Auchnagatt", "q": 7, "r": 8, "client count": "12", "population": "1653", "clients per 100 pop": "0.73"}, "S02001333": {"n": "Cruden", "IZcode": "S02001333", "name": "Cruden", "q": 9, "r": 8, "client count": "27", "population": "2209", "clients per 100 pop": "1.22"}, "S02001334": {"n": "Peterhead Links", "IZcode": "S02001334", "name": "Peterhead Links", "q": 10, "r": 8, "client count": "51", "population": "2230", "clients per 100 pop": "2.29"}, "S02001335": {"n": "Peterhead Bay", "IZcode": "S02001335", "name": "Peterhead Bay", "q": 11, "r": 8, "client count": "42", "population": "1181", "clients per 100 pop": "3.56"}, "S02001336": {"n": "Peterhead Harbour", "IZcode": "S02001336", "name": "Peterhead Harbour", "q": 10, "r": 9, "client count": "135", "population": "3037", "clients per 100 pop": "4.45"}, "S02001337": {"n": "Peterhead Ugieside", "IZcode": "S02001337", "name": "Peterhead Ugieside", "q": 9, "r": 9, "client count": "29", "population": "1982", "clients per 100 pop": "1.46"}, "S02001338": {"n": "Longside and Rattray", "IZcode": "S02001338", "name": "Longside and Rattray", "q": 8, "r": 9, "client count": "51", "population": "3960", "clients per 100 pop": "1.29"}, "S02001339": {"n": "Rosehearty and Strathbeg", "IZcode": "S02001339", "name": "Rosehearty and Strathbeg", "q": 8, "r": 10, "client count": "38", "population": "3188", "clients per 100 pop": "1.19"}, "S02001340": {"n": "Fraserburgh Smiddyhill", "IZcode": "S02001340", "name": "Fraserburgh Smiddyhill", "q": 9, "r": 11, "client count": "23", "population": "1965", "clients per 100 pop": "1.17"}, "S02001341": {"n": "Fraserburgh Lochpots", "IZcode": "S02001341", "name": "Fraserburgh Lochpots", "q": 8, "r": 11, "client count": "42", "population": "1100", "clients per 100 pop": "3.82"}, "S02001342": {"n": "Fraserburgh Central-Academy", "IZcode": "S02001342", "name": "Fraserburgh Central-Academy", "q": 9, "r": 12, "client count": "40", "population": "1266", "clients per 100 pop": "3.16"}, "S02001343": {"n": "Fraserburgh Harbour and Broadsea", "IZcode": "S02001343", "name": "Fraserburgh Harbour and Broadsea", "q": 8, "r": 12, "client count": "93", "population": "1683", "clients per 100 pop": "5.53"}}}
+{
+  "layout": "odd-r",
+  "hexes": {
+    "S02001285": {
+      "n": "East Cairngorms",
+      "IZcode": "S02001285",
+      "name": "East Cairngorms",
+      "q": 1,
+      "r": 4,
+      "client count": "8",
+      "population": "1534",
+      "clients per 100 pop": "0.52"
+    },
+    "S02001286": {
+      "n": "Aboyne and South Deeside",
+      "IZcode": "S02001286",
+      "name": "Aboyne and South Deeside",
+      "q": 2,
+      "r": 4,
+      "client count": "21",
+      "population": "2661",
+      "clients per 100 pop": "0.79"
+    },
+    "S02001287": {
+      "n": "Mearns and Laurencekirk",
+      "IZcode": "S02001287",
+      "name": "Mearns and Laurencekirk",
+      "q": 2,
+      "r": 1,
+      "client count": "19",
+      "population": "2242",
+      "clients per 100 pop": "0.85"
+    },
+    "S02001288": {
+      "n": "Mearns South and Benholm",
+      "IZcode": "S02001288",
+      "name": "Mearns South and Benholm",
+      "q": 2,
+      "r": 0,
+      "client count": "18",
+      "population": "2050",
+      "clients per 100 pop": "0.88"
+    },
+    "S02001289": {
+      "n": "Mearns North and Inverbervie",
+      "IZcode": "S02001289",
+      "name": "Mearns North and Inverbervie",
+      "q": 3,
+      "r": 2,
+      "client count": "17",
+      "population": "2793",
+      "clients per 100 pop": "0.61"
+    },
+    "S02001290": {
+      "n": "Fetteresso, Netherley and Catter",
+      "IZcode": "S02001290",
+      "name": "Fetteresso, Netherley and Catter",
+      "q": 4,
+      "r": 2,
+      "client count": "13",
+      "population": "2514",
+      "clients per 100 pop": "0.52"
+    },
+    "S02001291": {
+      "n": "Stonehaven South",
+      "IZcode": "S02001291",
+      "name": "Stonehaven South",
+      "q": 4,
+      "r": 0,
+      "client count": "46",
+      "population": "2468",
+      "clients per 100 pop": "1.86"
+    },
+    "S02001292": {
+      "n": "Stonehaven North",
+      "IZcode": "S02001292",
+      "name": "Stonehaven North",
+      "q": 4,
+      "r": 1,
+      "client count": "26",
+      "population": "2734",
+      "clients per 100 pop": "0.95"
+    },
+    "S02001293": {
+      "n": "Newtonhill",
+      "IZcode": "S02001293",
+      "name": "Newtonhill",
+      "q": 5,
+      "r": 1,
+      "client count": "9",
+      "population": "1438",
+      "clients per 100 pop": "0.63"
+    },
+    "S02001294": {
+      "n": "Portlethen",
+      "IZcode": "S02001294",
+      "name": "Portlethen",
+      "q": 5,
+      "r": 2,
+      "client count": "6",
+      "population": "2087",
+      "clients per 100 pop": "0.29"
+    },
+    "S02001295": {
+      "n": "Banchory-Devenick and Findon",
+      "IZcode": "S02001295",
+      "name": "Banchory-Devenick and Findon",
+      "q": 2,
+      "r": 3,
+      "client count": "20",
+      "population": "2986",
+      "clients per 100 pop": "0.67"
+    },
+    "S02001296": {
+      "n": "Dunecht, Durris and Drumoak",
+      "IZcode": "S02001296",
+      "name": "Dunecht, Durris and Drumoak",
+      "q": 4,
+      "r": 4,
+      "client count": "7",
+      "population": "2602",
+      "clients per 100 pop": "0.27"
+    },
+    "S02001297": {
+      "n": "Banchory East",
+      "IZcode": "S02001297",
+      "name": "Banchory East",
+      "q": 3,
+      "r": 3,
+      "client count": "14",
+      "population": "1994",
+      "clients per 100 pop": "0.7"
+    },
+    "S02001298": {
+      "n": "Banchory West",
+      "IZcode": "S02001298",
+      "name": "Banchory West",
+      "q": 4,
+      "r": 3,
+      "client count": "12",
+      "population": "1399",
+      "clients per 100 pop": "0.86"
+    },
+    "S02001299": {
+      "n": "Crathes and Torphins",
+      "IZcode": "S02001299",
+      "name": "Crathes and Torphins",
+      "q": 3,
+      "r": 4,
+      "client count": "10",
+      "population": "2182",
+      "clients per 100 pop": "0.46"
+    },
+    "S02001300": {
+      "n": "Cromar and Kildrummy",
+      "IZcode": "S02001300",
+      "name": "Cromar and Kildrummy",
+      "q": 2,
+      "r": 5,
+      "client count": "18",
+      "population": "2045",
+      "clients per 100 pop": "0.88"
+    },
+    "S02001301": {
+      "n": "Howe of Alford",
+      "IZcode": "S02001301",
+      "name": "Howe of Alford",
+      "q": 3,
+      "r": 6,
+      "client count": "23",
+      "population": "3304",
+      "clients per 100 pop": "0.7"
+    },
+    "S02001302": {
+      "n": "Kemnay",
+      "IZcode": "S02001302",
+      "name": "Kemnay",
+      "q": 3,
+      "r": 5,
+      "client count": "21",
+      "population": "1672",
+      "clients per 100 pop": "1.26"
+    },
+    "S02001303": {
+      "n": "Inverurie North",
+      "IZcode": "S02001303",
+      "name": "Inverurie North",
+      "q": 4,
+      "r": 5,
+      "client count": "27",
+      "population": "2570",
+      "clients per 100 pop": "1.05"
+    },
+    "S02001304": {
+      "n": "Inverurie South",
+      "IZcode": "S02001304",
+      "name": "Inverurie South",
+      "q": 5,
+      "r": 6,
+      "client count": "43",
+      "population": "2496",
+      "clients per 100 pop": "1.72"
+    },
+    "S02001305": {
+      "n": "Durno-Chapel of Garioch",
+      "IZcode": "S02001305",
+      "name": "Durno-Chapel of Garioch",
+      "q": 4,
+      "r": 6,
+      "client count": "27",
+      "population": "3992",
+      "clients per 100 pop": "0.68"
+    },
+    "S02001306": {
+      "n": "Kintore",
+      "IZcode": "S02001306",
+      "name": "Kintore",
+      "q": 5,
+      "r": 4,
+      "client count": "16",
+      "population": "2950",
+      "clients per 100 pop": "0.54"
+    },
+    "S02001307": {
+      "n": "Blackburn",
+      "IZcode": "S02001307",
+      "name": "Blackburn",
+      "q": 5,
+      "r": 5,
+      "client count": "1",
+      "population": "4240",
+      "clients per 100 pop": "0.02"
+    },
+    "S02001308": {
+      "n": "Westhill North and South",
+      "IZcode": "S02001308",
+      "name": "Westhill North and South",
+      "q": 6,
+      "r": 4,
+      "client count": "6",
+      "population": "2513",
+      "clients per 100 pop": "0.24"
+    },
+    "S02001309": {
+      "n": "Westhill Central",
+      "IZcode": "S02001309",
+      "name": "Westhill Central",
+      "q": 7,
+      "r": 4,
+      "client count": "12",
+      "population": "1850",
+      "clients per 100 pop": "0.65"
+    },
+    "S02001310": {
+      "n": "Garlogie and Elrick",
+      "IZcode": "S02001310",
+      "name": "Garlogie and Elrick",
+      "q": 6,
+      "r": 3,
+      "client count": "8",
+      "population": "1883",
+      "clients per 100 pop": "0.42"
+    },
+    "S02001311": {
+      "n": "Newmachar and Fintray",
+      "IZcode": "S02001311",
+      "name": "Newmachar and Fintray",
+      "q": 6,
+      "r": 6,
+      "client count": "2",
+      "population": "2094",
+      "clients per 100 pop": "0.1"
+    },
+    "S02001312": {
+      "n": "Balmedie and Potterton",
+      "IZcode": "S02001312",
+      "name": "Balmedie and Potterton",
+      "q": 7,
+      "r": 6,
+      "client count": "3",
+      "population": "2692",
+      "clients per 100 pop": "0.11"
+    },
+    "S02001313": {
+      "n": "Ellon East",
+      "IZcode": "S02001313",
+      "name": "Ellon East",
+      "q": 8,
+      "r": 6,
+      "client count": "34",
+      "population": "2953",
+      "clients per 100 pop": "1.15"
+    },
+    "S02001314": {
+      "n": "Ellon West",
+      "IZcode": "S02001314",
+      "name": "Ellon West",
+      "q": 8,
+      "r": 7,
+      "client count": "25",
+      "population": "1922",
+      "clients per 100 pop": "1.3"
+    },
+    "S02001315": {
+      "n": "Ythanside",
+      "IZcode": "S02001315",
+      "name": "Ythanside",
+      "q": 7,
+      "r": 7,
+      "client count": "20",
+      "population": "2466",
+      "clients per 100 pop": "0.81"
+    },
+    "S02001316": {
+      "n": "Ythsie",
+      "IZcode": "S02001316",
+      "name": "Ythsie",
+      "q": 6,
+      "r": 7,
+      "client count": "15",
+      "population": "3076",
+      "clients per 100 pop": "0.49"
+    },
+    "S02001317": {
+      "n": "Barrahill",
+      "IZcode": "S02001317",
+      "name": "Barrahill",
+      "q": 5,
+      "r": 7,
+      "client count": "26",
+      "population": "2512",
+      "clients per 100 pop": "1.04"
+    },
+    "S02001318": {
+      "n": "Fyvie-Rothie",
+      "IZcode": "S02001318",
+      "name": "Fyvie-Rothie",
+      "q": 6,
+      "r": 8,
+      "client count": "21",
+      "population": "2032",
+      "clients per 100 pop": "1.03"
+    },
+    "S02001319": {
+      "n": "Insch, Oyne and Ythanwells",
+      "IZcode": "S02001319",
+      "name": "Insch, Oyne and Ythanwells",
+      "q": 4,
+      "r": 7,
+      "client count": "25",
+      "population": "2527",
+      "clients per 100 pop": "0.99"
+    },
+    "S02001320": {
+      "n": "Clashindarroch",
+      "IZcode": "S02001320",
+      "name": "Clashindarroch",
+      "q": 2,
+      "r": 7,
+      "client count": "15",
+      "population": "2335",
+      "clients per 100 pop": "0.64"
+    },
+    "S02001321": {
+      "n": "Huntly",
+      "IZcode": "S02001321",
+      "name": "Huntly",
+      "q": 3,
+      "r": 7,
+      "client count": "37",
+      "population": "1949",
+      "clients per 100 pop": "1.9"
+    },
+    "S02001322": {
+      "n": "Auchterless and Monquhitter",
+      "IZcode": "S02001322",
+      "name": "Auchterless and Monquhitter",
+      "q": 5,
+      "r": 8,
+      "client count": "7",
+      "population": "1490",
+      "clients per 100 pop": "0.47"
+    },
+    "S02001323": {
+      "n": "Turriff",
+      "IZcode": "S02001323",
+      "name": "Turriff",
+      "q": 4,
+      "r": 8,
+      "client count": "27",
+      "population": "2089",
+      "clients per 100 pop": "1.29"
+    },
+    "S02001324": {
+      "n": "Portsoy, Fordyce and Cornhill",
+      "IZcode": "S02001324",
+      "name": "Portsoy, Fordyce and Cornhill",
+      "q": 3,
+      "r": 9,
+      "client count": "17",
+      "population": "1566",
+      "clients per 100 pop": "1.09"
+    },
+    "S02001325": {
+      "n": "Aberchirder and Whitehills",
+      "IZcode": "S02001325",
+      "name": "Aberchirder and Whitehills",
+      "q": 4,
+      "r": 9,
+      "client count": "25",
+      "population": "1957",
+      "clients per 100 pop": "1.28"
+    },
+    "S02001326": {
+      "n": "Banff",
+      "IZcode": "S02001326",
+      "name": "Banff",
+      "q": 5,
+      "r": 10,
+      "client count": "48",
+      "population": "1972",
+      "clients per 100 pop": "2.43"
+    },
+    "S02001327": {
+      "n": "Macduff",
+      "IZcode": "S02001327",
+      "name": "Macduff",
+      "q": 6,
+      "r": 10,
+      "client count": "40",
+      "population": "1910",
+      "clients per 100 pop": "2.09"
+    },
+    "S02001328": {
+      "n": "Gardenstown and King Edward",
+      "IZcode": "S02001328",
+      "name": "Gardenstown and King Edward",
+      "q": 5,
+      "r": 9,
+      "client count": "11",
+      "population": "1586",
+      "clients per 100 pop": "0.69"
+    },
+    "S02001329": {
+      "n": "New Pitsligo",
+      "IZcode": "S02001329",
+      "name": "New Pitsligo",
+      "q": 6,
+      "r": 9,
+      "client count": "15",
+      "population": "1480",
+      "clients per 100 pop": "1.01"
+    },
+    "S02001330": {
+      "n": "Deer and Mormond",
+      "IZcode": "S02001330",
+      "name": "Deer and Mormond",
+      "q": 7,
+      "r": 9,
+      "client count": "26",
+      "population": "2540",
+      "clients per 100 pop": "1.02"
+    },
+    "S02001331": {
+      "n": "Mintlaw",
+      "IZcode": "S02001331",
+      "name": "Mintlaw",
+      "q": 8,
+      "r": 8,
+      "client count": "11",
+      "population": "1193",
+      "clients per 100 pop": "0.92"
+    },
+    "S02001332": {
+      "n": "Auchnagatt",
+      "IZcode": "S02001332",
+      "name": "Auchnagatt",
+      "q": 7,
+      "r": 8,
+      "client count": "12",
+      "population": "1653",
+      "clients per 100 pop": "0.73"
+    },
+    "S02001333": {
+      "n": "Cruden",
+      "IZcode": "S02001333",
+      "name": "Cruden",
+      "q": 9,
+      "r": 8,
+      "client count": "27",
+      "population": "2209",
+      "clients per 100 pop": "1.22"
+    },
+    "S02001334": {
+      "n": "Peterhead Links",
+      "IZcode": "S02001334",
+      "name": "Peterhead Links",
+      "q": 10,
+      "r": 8,
+      "client count": "51",
+      "population": "2230",
+      "clients per 100 pop": "2.29"
+    },
+    "S02001335": {
+      "n": "Peterhead Bay",
+      "IZcode": "S02001335",
+      "name": "Peterhead Bay",
+      "q": 11,
+      "r": 8,
+      "client count": "42",
+      "population": "1181",
+      "clients per 100 pop": "3.56"
+    },
+    "S02001336": {
+      "n": "Peterhead Harbour",
+      "IZcode": "S02001336",
+      "name": "Peterhead Harbour",
+      "q": 10,
+      "r": 9,
+      "client count": "135",
+      "population": "3037",
+      "clients per 100 pop": "4.45"
+    },
+    "S02001337": {
+      "n": "Peterhead Ugieside",
+      "IZcode": "S02001337",
+      "name": "Peterhead Ugieside",
+      "q": 9,
+      "r": 9,
+      "client count": "29",
+      "population": "1982",
+      "clients per 100 pop": "1.46"
+    },
+    "S02001338": {
+      "n": "Longside and Rattray",
+      "IZcode": "S02001338",
+      "name": "Longside and Rattray",
+      "q": 8,
+      "r": 9,
+      "client count": "51",
+      "population": "3960",
+      "clients per 100 pop": "1.29"
+    },
+    "S02001339": {
+      "n": "Rosehearty and Strathbeg",
+      "IZcode": "S02001339",
+      "name": "Rosehearty and Strathbeg",
+      "q": 8,
+      "r": 10,
+      "client count": "38",
+      "population": "3188",
+      "clients per 100 pop": "1.19"
+    },
+    "S02001340": {
+      "n": "Fraserburgh Smiddyhill",
+      "IZcode": "S02001340",
+      "name": "Fraserburgh Smiddyhill",
+      "q": 9,
+      "r": 11,
+      "client count": "23",
+      "population": "1965",
+      "clients per 100 pop": "1.17"
+    },
+    "S02001341": {
+      "n": "Fraserburgh Lochpots",
+      "IZcode": "S02001341",
+      "name": "Fraserburgh Lochpots",
+      "q": 8,
+      "r": 11,
+      "client count": "42",
+      "population": "1100",
+      "clients per 100 pop": "3.82"
+    },
+    "S02001342": {
+      "n": "Fraserburgh Central-Academy",
+      "IZcode": "S02001342",
+      "name": "Fraserburgh Central-Academy",
+      "q": 9,
+      "r": 12,
+      "client count": "40",
+      "population": "1266",
+      "clients per 100 pop": "3.16"
+    },
+    "S02001343": {
+      "n": "Fraserburgh Harbour and Broadsea",
+      "IZcode": "S02001343",
+      "name": "Fraserburgh Harbour and Broadsea",
+      "q": 8,
+      "r": 12,
+      "client count": "93",
+      "population": "1683",
+      "clients per 100 pop": "5.53"
+    }
+  }
+}

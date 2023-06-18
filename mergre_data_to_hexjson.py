@@ -25,13 +25,13 @@ male_hexes = {d["IZcode"]: d|clients_male[d["n"]] for h, d in hexjson["hexes"].i
 
 hexjson["hexes"] = male_hexes
 with open("male_aberdeenshire_IZ.hexjson", "w") as outf:
-    outf.write(json.dumps(hexjson))
+    outf.write(json.dumps(hexjson, indent=2))
 
 # hexjson["hexes"] = female_hexes
 # with open("female_aberdeenshire_IZ.hexjson", "w") as outf:
 #     outf.write(jsom.dumps(hexjson))    
 
-with open("male_aberdeenshire_IZ.csv", "w") as outf:
+with open("male_aberdeenshire_IZ.csv", "w", newline='') as outf:
     fieldnames = ['n', 'IZcode', 'name', 'q', 'r',
                   'client count', 'population', 'clients per 100 pop']
     writer = csv.DictWriter(outf, fieldnames=fieldnames)
