@@ -7,17 +7,17 @@ use std::io::Error;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Hex {
-    n: String,
-    q: i32,
-    r: i32,
-    region: String,
-    colour: String,
+    pub n: String,
+    pub q: i32,
+    pub r: i32,
+    pub region: String,
+    pub colour: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct HexJson {
-    layout: String,
-    hexes: HashMap<String, Hex>,
+    pub layout: String,
+    pub hexes: HashMap<String, Hex>,
 }
 
 pub fn parse_hex_json(json: &str) -> Result<HexJson, SerdeError> {
