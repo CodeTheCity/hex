@@ -1,0 +1,39 @@
+{
+	"layout":"odd-r",
+	"hexes": {
+		
+		"S12000005":{"n":"Clackmannanshire","q":2,"r":24,"region":"S92000003","colour":"#2254F4"},
+		"S12000006":{"n":"Dumfries and Galloway","q":4,"r":20,"region":"S92000003","colour":"#2254F4"},
+		"S12000008":{"n":"East Ayrshire","q":3,"r":20,"region":"S92000003","colour":"#2254F4"},
+		"S12000010":{"n":"East Lothian","q":5,"r":22,"region":"S92000003","colour":"#2254F4"},
+		"S12000011":{"n":"East Renfrewshire","q":2,"r":20,"region":"S92000003","colour":"#2254F4"},
+		"S12000013":{"n":"Na h-Eileanan Siar","q":-1,"r":27,"region":"S92000003","colour":"#2254F4"},
+		"S12000014":{"n":"Falkirk","q":2,"r":23,"region":"S92000003","colour":"#2254F4"},
+		"S12000017":{"n":"Highland","q":1,"r":26,"region":"S92000003","colour":"#2254F4"},
+		"S12000018":{"n":"Inverclyde","q":0,"r":21,"region":"S92000003","colour":"#2254F4"},
+		"S12000019":{"n":"Midlothian","q":3,"r":21,"region":"S92000003","colour":"#2254F4"},
+		"S12000020":{"n":"Moray","q":2,"r":26,"region":"S92000003","colour":"#2254F4"},
+		"S12000021":{"n":"North Ayrshire","q":1,"r":20,"region":"S92000003","colour":"#2254F4"},
+		"S12000023":{"n":"Orkney Islands","q":4,"r":28,"region":"S92000003","colour":"#2254F4"},
+		"S12000026":{"n":"Scottish Borders","q":4,"r":21,"region":"S92000003","colour":"#2254F4"},
+		"S12000027":{"n":"Shetland Islands","q":5,"r":30,"region":"S92000003","colour":"#2254F4"},
+		"S12000028":{"n":"South Ayrshire","q":1,"r":19,"region":"S92000003","colour":"#2254F4"},
+		"S12000029":{"n":"South Lanarkshire","q":2,"r":21,"region":"S92000003","colour":"#2254F4"},
+		"S12000030":{"n":"Stirling","q":1,"r":24,"region":"S92000003","colour":"#2254F4"},
+		"S12000033":{"n":"Aberdeen City","q":4,"r":26,"region":"S92000003","colour":"#2254F4"},
+		"S12000034":{"n":"Aberdeenshire","q":3,"r":26,"region":"S92000003","colour":"#2254F4"},
+		"S12000035":{"n":"Argyll and Bute","q":0,"r":24,"region":"S92000003","colour":"#2254F4"},
+		"S12000036":{"n":"City of Edinburgh","q":4,"r":22,"region":"S92000003","colour":"#2254F4"},
+		"S12000039":{"n":"West Dunbartonshire","q":0,"r":23,"region":"S92000003","colour":"#2254F4"},
+		"S12000038":{"n":"Renfrewshire","q":1,"r":22,"region":"S92000003","colour":"#2254F4"},
+		"S12000045":{"n":"East Dunbartonshire","q":1,"r":23,"region":"S92000003","colour":"#2254F4"},
+		"S12000047":{"n":"Fife","q":3,"r":24,"region":"S92000003","colour":"#2254F4"},
+		"S12000040":{"n":"West Lothian","q":3,"r":22,"region":"S92000003","colour":"#2254F4"},
+		"S12000041":{"n":"Angus","q":2,"r":25,"region":"S92000003","colour":"#2254F4"},
+		"S12000042":{"n":"Dundee City","q":3,"r":25,"region":"S92000003","colour":"#2254F4"},
+		"S12000048":{"n":"Perth and Kinross","q":1,"r":25,"region":"S92000003","colour":"#2254F4"},
+		"S12000049":{"n":"Glasgow City","q":1,"r":21,"region":"S92000003","colour":"#2254F4"},
+		"S12000050":{"n":"North Lanarkshire","q":2,"r":22,"region":"S92000003","colour":"#2254F4"}
+
+	}
+}
