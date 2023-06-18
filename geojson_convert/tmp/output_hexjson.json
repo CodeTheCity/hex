@@ -1,417 +1,417 @@
 {
   "layout": "odd-r",
   "hexes": {
-    "S02001287": {
-      "n": "Mearns and Laurencekirk",
-      "q": 4,
-      "r": 2,
-      "region": "S02001287",
-      "colour": "#2254F4"
-    },
-    "S02001331": {
-      "n": "Mintlaw",
-      "q": 21,
-      "r": 21,
-      "region": "S02001331",
-      "colour": "#2254F4"
-    },
-    "S02001330": {
-      "n": "Deer and Mormond",
-      "q": 19,
-      "r": 24,
-      "region": "S02001330",
-      "colour": "#2254F4"
-    },
-    "S02001325": {
-      "n": "Aberchirder and Whitehills",
-      "q": 10,
-      "r": 24,
-      "region": "S02001325",
-      "colour": "#2254F4"
-    },
-    "S02001315": {
-      "n": "Ythanside",
-      "q": 19,
-      "r": 19,
-      "region": "S02001315",
-      "colour": "#2254F4"
-    },
-    "S02001295": {
-      "n": "Banchory-Devenick and Findon",
-      "q": 13,
-      "r": 8,
-      "region": "S02001295",
-      "colour": "#2254F4"
-    },
-    "S02001311": {
-      "n": "Newmachar and Fintray",
-      "q": 14,
-      "r": 16,
-      "region": "S02001311",
-      "colour": "#2254F4"
-    },
     "S02001323": {
       "n": "Turriff",
-      "q": 8,
-      "r": 21,
+      "q": 5,
+      "r": 14,
       "region": "S02001323",
       "colour": "#2254F4"
     },
-    "S02001307": {
-      "n": "Blackburn",
-      "q": 13,
-      "r": 13,
-      "region": "S02001307",
-      "colour": "#2254F4"
-    },
-    "S02001302": {
-      "n": "Kemnay",
-      "q": 7,
-      "r": 13,
-      "region": "S02001302",
-      "colour": "#2254F4"
-    },
-    "S02001310": {
-      "n": "Garlogie and Elrick",
-      "q": 16,
-      "r": 8,
-      "region": "S02001310",
-      "colour": "#2254F4"
-    },
-    "S02001316": {
-      "n": "Ythsie",
-      "q": 16,
-      "r": 19,
-      "region": "S02001316",
-      "colour": "#2254F4"
-    },
-    "S02001305": {
-      "n": "Durno-Chapel of Garioch",
+    "S02001328": {
+      "n": "Gardenstown and King Edward",
       "q": 8,
       "r": 16,
-      "region": "S02001305",
+      "region": "S02001328",
       "colour": "#2254F4"
     },
-    "S02001297": {
-      "n": "Banchory East",
-      "q": 7,
-      "r": 8,
-      "region": "S02001297",
+    "S02001329": {
+      "n": "New Pitsligo",
+      "q": 11,
+      "r": 16,
+      "region": "S02001329",
       "colour": "#2254F4"
     },
-    "S02001321": {
-      "n": "Huntly",
-      "q": 7,
-      "r": 19,
-      "region": "S02001321",
+    "S02001317": {
+      "n": "Barrahill",
+      "q": 8,
+      "r": 12,
+      "region": "S02001317",
+      "colour": "#2254F4"
+    },
+    "S02001335": {
+      "n": "Peterhead Bay",
+      "q": 20,
+      "r": 14,
+      "region": "S02001335",
       "colour": "#2254F4"
     },
     "S02001299": {
       "n": "Crathes and Torphins",
-      "q": 5,
-      "r": 10,
+      "q": 3,
+      "r": 7,
       "region": "S02001299",
       "colour": "#2254F4"
     },
-    "S02001298": {
-      "n": "Banchory West",
-      "q": 10,
-      "r": 8,
-      "region": "S02001298",
+    "S02001324": {
+      "n": "Portsoy, Fordyce and Cornhill",
+      "q": 5,
+      "r": 16,
+      "region": "S02001324",
+      "colour": "#2254F4"
+    },
+    "S02001320": {
+      "n": "Clashindarroch",
+      "q": 2,
+      "r": 12,
+      "region": "S02001320",
+      "colour": "#2254F4"
+    },
+    "S02001318": {
+      "n": "Fyvie-Rothie",
+      "q": 9,
+      "r": 14,
+      "region": "S02001318",
+      "colour": "#2254F4"
+    },
+    "S02001309": {
+      "n": "Westhill Central",
+      "q": 11,
+      "r": 7,
+      "region": "S02001309",
+      "colour": "#2254F4"
+    },
+    "S02001336": {
+      "n": "Peterhead Harbour",
+      "q": 18,
+      "r": 16,
+      "region": "S02001336",
       "colour": "#2254F4"
     },
     "S02001322": {
       "n": "Auchterless and Monquhitter",
-      "q": 12,
-      "r": 21,
+      "q": 8,
+      "r": 14,
       "region": "S02001322",
       "colour": "#2254F4"
     },
-    "S02001288": {
-      "n": "Mearns South and Benholm",
-      "q": 3,
-      "r": 0,
-      "region": "S02001288",
-      "colour": "#2254F4"
-    },
-    "S02001326": {
-      "n": "Banff",
+    "S02001315": {
+      "n": "Ythanside",
       "q": 12,
-      "r": 27,
-      "region": "S02001326",
+      "r": 12,
+      "region": "S02001315",
       "colour": "#2254F4"
     },
-    "S02001286": {
-      "n": "Aboyne and South Deeside",
-      "q": 3,
-      "r": 10,
-      "region": "S02001286",
+    "S02001300": {
+      "n": "Cromar and Kildrummy",
+      "q": 2,
+      "r": 9,
+      "region": "S02001300",
       "colour": "#2254F4"
     },
-    "S02001343": {
-      "n": "Fraserburgh Harbour and Broadsea",
-      "q": 25,
-      "r": 29,
-      "region": "S02001343",
+    "S02001321": {
+      "n": "Huntly",
+      "q": 5,
+      "r": 12,
+      "region": "S02001321",
       "colour": "#2254F4"
     },
-    "S02001342": {
-      "n": "Fraserburgh Central-Academy",
-      "q": 28,
-      "r": 30,
-      "region": "S02001342",
+    "S02001292": {
+      "n": "Stonehaven North",
+      "q": 6,
+      "r": 1,
+      "region": "S02001292",
       "colour": "#2254F4"
     },
-    "S02001339": {
-      "n": "Rosehearty and Strathbeg",
-      "q": 21,
-      "r": 27,
-      "region": "S02001339",
+    "S02001334": {
+      "n": "Peterhead Links",
+      "q": 17,
+      "r": 14,
+      "region": "S02001334",
       "colour": "#2254F4"
     },
-    "S02001338": {
-      "n": "Longside and Rattray",
-      "q": 22,
-      "r": 24,
-      "region": "S02001338",
+    "S02001330": {
+      "n": "Deer and Mormond",
+      "q": 12,
+      "r": 16,
+      "region": "S02001330",
       "colour": "#2254F4"
     },
     "S02001337": {
       "n": "Peterhead Ugieside",
-      "q": 25,
-      "r": 24,
+      "q": 17,
+      "r": 16,
       "region": "S02001337",
       "colour": "#2254F4"
     },
-    "S02001293": {
-      "n": "Newtonhill",
-      "q": 13,
-      "r": 2,
-      "region": "S02001293",
+    "S02001294": {
+      "n": "Portlethen",
+      "q": 8,
+      "r": 3,
+      "region": "S02001294",
+      "colour": "#2254F4"
+    },
+    "S02001307": {
+      "n": "Blackburn",
+      "q": 8,
+      "r": 9,
+      "region": "S02001307",
+      "colour": "#2254F4"
+    },
+    "S02001340": {
+      "n": "Fraserburgh Smiddyhill",
+      "q": 18,
+      "r": 18,
+      "region": "S02001340",
+      "colour": "#2254F4"
+    },
+    "S02001312": {
+      "n": "Balmedie and Potterton",
+      "q": 11,
+      "r": 10,
+      "region": "S02001312",
+      "colour": "#2254F4"
+    },
+    "S02001327": {
+      "n": "Macduff",
+      "q": 9,
+      "r": 18,
+      "region": "S02001327",
+      "colour": "#2254F4"
+    },
+    "S02001331": {
+      "n": "Mintlaw",
+      "q": 14,
+      "r": 14,
+      "region": "S02001331",
+      "colour": "#2254F4"
+    },
+    "S02001297": {
+      "n": "Banchory East",
+      "q": 5,
+      "r": 5,
+      "region": "S02001297",
+      "colour": "#2254F4"
+    },
+    "S02001296": {
+      "n": "Dunecht, Durris and Drumoak",
+      "q": 5,
+      "r": 7,
+      "region": "S02001296",
+      "colour": "#2254F4"
+    },
+    "S02001298": {
+      "n": "Banchory West",
+      "q": 6,
+      "r": 5,
+      "region": "S02001298",
       "colour": "#2254F4"
     },
     "S02001285": {
       "n": "East Cairngorms",
       "q": 0,
-      "r": 10,
+      "r": 7,
       "region": "S02001285",
       "colour": "#2254F4"
     },
-    "S02001291": {
-      "n": "Stonehaven South",
+    "S02001326": {
+      "n": "Banff",
       "q": 8,
-      "r": 0,
-      "region": "S02001291",
+      "r": 18,
+      "region": "S02001326",
       "colour": "#2254F4"
     },
-    "S02001313": {
-      "n": "Ellon East",
-      "q": 21,
-      "r": 16,
-      "region": "S02001313",
+    "S02001305": {
+      "n": "Durno-Chapel of Garioch",
+      "q": 5,
+      "r": 10,
+      "region": "S02001305",
       "colour": "#2254F4"
     },
-    "S02001329": {
-      "n": "New Pitsligo",
-      "q": 16,
-      "r": 24,
-      "region": "S02001329",
+    "S02001342": {
+      "n": "Fraserburgh Central-Academy",
+      "q": 19,
+      "r": 20,
+      "region": "S02001342",
       "colour": "#2254F4"
     },
     "S02001289": {
       "n": "Mearns North and Inverbervie",
-      "q": 5,
-      "r": 5,
+      "q": 3,
+      "r": 3,
       "region": "S02001289",
-      "colour": "#2254F4"
-    },
-    "S02001333": {
-      "n": "Cruden",
-      "q": 23,
-      "r": 21,
-      "region": "S02001333",
-      "colour": "#2254F4"
-    },
-    "S02001334": {
-      "n": "Peterhead Links",
-      "q": 26,
-      "r": 21,
-      "region": "S02001334",
-      "colour": "#2254F4"
-    },
-    "S02001320": {
-      "n": "Clashindarroch",
-      "q": 4,
-      "r": 19,
-      "region": "S02001320",
-      "colour": "#2254F4"
-    },
-    "S02001341": {
-      "n": "Fraserburgh Lochpots",
-      "q": 24,
-      "r": 27,
-      "region": "S02001341",
-      "colour": "#2254F4"
-    },
-    "S02001328": {
-      "n": "Gardenstown and King Edward",
-      "q": 13,
-      "r": 24,
-      "region": "S02001328",
-      "colour": "#2254F4"
-    },
-    "S02001318": {
-      "n": "Fyvie-Rothie",
-      "q": 14,
-      "r": 21,
-      "region": "S02001318",
       "colour": "#2254F4"
     },
     "S02001319": {
       "n": "Insch, Oyne and Ythanwells",
-      "q": 10,
-      "r": 19,
+      "q": 6,
+      "r": 12,
       "region": "S02001319",
       "colour": "#2254F4"
     },
-    "S02001327": {
-      "n": "Macduff",
-      "q": 14,
-      "r": 27,
-      "region": "S02001327",
-      "colour": "#2254F4"
-    },
-    "S02001290": {
-      "n": "Fetteresso, Netherley and Catter",
-      "q": 8,
-      "r": 5,
-      "region": "S02001290",
-      "colour": "#2254F4"
-    },
-    "S02001296": {
-      "n": "Dunecht, Durris and Drumoak",
-      "q": 8,
-      "r": 10,
-      "region": "S02001296",
-      "colour": "#2254F4"
-    },
-    "S02001336": {
-      "n": "Peterhead Harbour",
-      "q": 28,
-      "r": 24,
-      "region": "S02001336",
+    "S02001302": {
+      "n": "Kemnay",
+      "q": 5,
+      "r": 9,
+      "region": "S02001302",
       "colour": "#2254F4"
     },
     "S02001332": {
       "n": "Auchnagatt",
-      "q": 17,
-      "r": 21,
+      "q": 11,
+      "r": 14,
       "region": "S02001332",
       "colour": "#2254F4"
     },
-    "S02001312": {
-      "n": "Balmedie and Potterton",
+    "S02001343": {
+      "n": "Fraserburgh Harbour and Broadsea",
       "q": 17,
-      "r": 16,
-      "region": "S02001312",
+      "r": 19,
+      "region": "S02001343",
       "colour": "#2254F4"
     },
-    "S02001294": {
-      "n": "Portlethen",
-      "q": 12,
-      "r": 5,
-      "region": "S02001294",
+    "S02001291": {
+      "n": "Stonehaven South",
+      "q": 5,
+      "r": 0,
+      "region": "S02001291",
       "colour": "#2254F4"
     },
-    "S02001292": {
-      "n": "Stonehaven North",
-      "q": 10,
-      "r": 2,
-      "region": "S02001292",
-      "colour": "#2254F4"
-    },
-    "S02001324": {
-      "n": "Portsoy, Fordyce and Cornhill",
-      "q": 7,
-      "r": 24,
-      "region": "S02001324",
-      "colour": "#2254F4"
-    },
-    "S02001304": {
-      "n": "Inverurie South",
-      "q": 10,
-      "r": 13,
-      "region": "S02001304",
+    "S02001316": {
+      "n": "Ythsie",
+      "q": 11,
+      "r": 12,
+      "region": "S02001316",
       "colour": "#2254F4"
     },
     "S02001308": {
       "n": "Westhill North and South",
-      "q": 14,
-      "r": 10,
+      "q": 9,
+      "r": 7,
       "region": "S02001308",
+      "colour": "#2254F4"
+    },
+    "S02001287": {
+      "n": "Mearns and Laurencekirk",
+      "q": 2,
+      "r": 1,
+      "region": "S02001287",
       "colour": "#2254F4"
     },
     "S02001301": {
       "n": "Howe of Alford",
-      "q": 5,
-      "r": 16,
+      "q": 3,
+      "r": 10,
       "region": "S02001301",
       "colour": "#2254F4"
     },
-    "S02001317": {
-      "n": "Barrahill",
-      "q": 13,
-      "r": 19,
-      "region": "S02001317",
+    "S02001304": {
+      "n": "Inverurie South",
+      "q": 7,
+      "r": 9,
+      "region": "S02001304",
       "colour": "#2254F4"
     },
-    "S02001314": {
-      "n": "Ellon West",
-      "q": 22,
-      "r": 19,
-      "region": "S02001314",
-      "colour": "#2254F4"
-    },
-    "S02001306": {
-      "n": "Kintore",
-      "q": 12,
-      "r": 10,
-      "region": "S02001306",
-      "colour": "#2254F4"
-    },
-    "S02001335": {
-      "n": "Peterhead Bay",
-      "q": 30,
-      "r": 21,
-      "region": "S02001335",
-      "colour": "#2254F4"
-    },
-    "S02001340": {
-      "n": "Fraserburgh Smiddyhill",
-      "q": 27,
-      "r": 27,
-      "region": "S02001340",
-      "colour": "#2254F4"
-    },
-    "S02001309": {
-      "n": "Westhill Central",
-      "q": 17,
-      "r": 10,
-      "region": "S02001309",
+    "S02001286": {
+      "n": "Aboyne and South Deeside",
+      "q": 2,
+      "r": 7,
+      "region": "S02001286",
       "colour": "#2254F4"
     },
     "S02001303": {
       "n": "Inverurie North",
-      "q": 12,
-      "r": 16,
+      "q": 8,
+      "r": 10,
       "region": "S02001303",
       "colour": "#2254F4"
     },
-    "S02001300": {
-      "n": "Cromar and Kildrummy",
-      "q": 4,
-      "r": 13,
-      "region": "S02001300",
+    "S02001310": {
+      "n": "Garlogie and Elrick",
+      "q": 11,
+      "r": 5,
+      "region": "S02001310",
+      "colour": "#2254F4"
+    },
+    "S02001341": {
+      "n": "Fraserburgh Lochpots",
+      "q": 16,
+      "r": 18,
+      "region": "S02001341",
+      "colour": "#2254F4"
+    },
+    "S02001295": {
+      "n": "Banchory-Devenick and Findon",
+      "q": 8,
+      "r": 5,
+      "region": "S02001295",
+      "colour": "#2254F4"
+    },
+    "S02001288": {
+      "n": "Mearns South and Benholm",
+      "q": 2,
+      "r": 0,
+      "region": "S02001288",
+      "colour": "#2254F4"
+    },
+    "S02001293": {
+      "n": "Newtonhill",
+      "q": 8,
+      "r": 1,
+      "region": "S02001293",
+      "colour": "#2254F4"
+    },
+    "S02001313": {
+      "n": "Ellon East",
+      "q": 14,
+      "r": 10,
+      "region": "S02001313",
+      "colour": "#2254F4"
+    },
+    "S02001314": {
+      "n": "Ellon West",
+      "q": 14,
+      "r": 12,
+      "region": "S02001314",
+      "colour": "#2254F4"
+    },
+    "S02001338": {
+      "n": "Longside and Rattray",
+      "q": 14,
+      "r": 16,
+      "region": "S02001338",
+      "colour": "#2254F4"
+    },
+    "S02001333": {
+      "n": "Cruden",
+      "q": 15,
+      "r": 14,
+      "region": "S02001333",
+      "colour": "#2254F4"
+    },
+    "S02001306": {
+      "n": "Kintore",
+      "q": 8,
+      "r": 7,
+      "region": "S02001306",
+      "colour": "#2254F4"
+    },
+    "S02001325": {
+      "n": "Aberchirder and Whitehills",
+      "q": 6,
+      "r": 16,
+      "region": "S02001325",
+      "colour": "#2254F4"
+    },
+    "S02001339": {
+      "n": "Rosehearty and Strathbeg",
+      "q": 14,
+      "r": 18,
+      "region": "S02001339",
+      "colour": "#2254F4"
+    },
+    "S02001290": {
+      "n": "Fetteresso, Netherley and Catter",
+      "q": 5,
+      "r": 3,
+      "region": "S02001290",
+      "colour": "#2254F4"
+    },
+    "S02001311": {
+      "n": "Newmachar and Fintray",
+      "q": 9,
+      "r": 10,
+      "region": "S02001311",
       "colour": "#2254F4"
     }
   }

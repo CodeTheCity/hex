@@ -48,8 +48,8 @@ mod tests {
         let min_y = centroids.clone().map(|c|c.latitude).min_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal)).unwrap();
         let max_y = centroids.clone().map(|c|c.latitude).max_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal)).unwrap();
         println!("Bounds: {},{} : {},{}", min_x,min_y,max_x,max_y);
-        let x_width = 30;
-        let y_height = 30;
+        let x_width = 20;
+        let y_height = 20;
         let x_step = (max_x - min_x) / x_width as f64;
         let y_step = (max_y - min_y) / y_height as f64;
 
