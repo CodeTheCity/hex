@@ -1,54 +1,8 @@
-use serde::{Deserialize, Serialize};
-use std::fs;
+use crate::geojson::{parse_json_file,Coordinates};
+use std::collections::HashMap;
 
-#[derive(Serialize, Deserialize, Debug, PartialEq)]
-struct GeoJson {
-    #[serde(rename = "type")]
-    geo_type: String,
-    name: String,
-    crs: CRS,
-    features: Vec<Feature>,
-}
-
-#[derive(Serialize, Deserialize, Debug, PartialEq)]
-struct CRS {
-    #[serde(rename = "type")]
-    crs_type: String,
-    properties: CRSProperties,
-}
-
-#[derive(Serialize, Deserialize, Debug, PartialEq)]
-struct CRSProperties {
-    name: String,
-}
-
-#[derive(Serialize, Deserialize, Debug, PartialEq)]
-struct Feature {
-    #[serde(rename = "type")]
-    feature_type: String,
-    properties: FeatureProperties,
-    geometry: Geometry,
-}
-
-#[derive(Serialize, Deserialize, Debug, PartialEq)]
-struct FeatureProperties {
-    #[serde(rename = "IZcode")]
-    izcode: String,
-    name: String,
-}
-
-#[derive(Serialize, Deserialize, Debug, PartialEq)]
-struct Geometry {
-    #[serde(rename = "type")]
-    geometry_type: String,
-    coordinates: Vec<Vec<Vec<f64>>>,
-}
-
-fn parse_json_file(file_path: &str) -> Result<GeoJson, Box<dyn std::error::Error>> {
-    let data = fs::read_to_string(file_path)?;
-    let geo_json: GeoJson = serde_json::from_str(&data)?;
-    Ok(geo_json)
-}
+mod hexjson;
+mod geojson;
 
 fn main() {
     let file_path = "geo.json";
@@ -59,45 +13,70 @@ fn main() {
     }
 }
 
+fn average_coordinates(coords: &Vec<Coordinates>) -> Option<Coordinates> {
+    if coords.is_empty() {
+        return None;
+    }
+    
+    let mut sum_longitude = 0.0;
+    let mut sum_latitude = 0.0;
+    for coord in coords {
+        sum_longitude += coord.longitude;
+        sum_latitude += coord.latitude;
+    }
+    
+    Some(Coordinates {
+        longitude: sum_longitude / (coords.len() as f64),
+        latitude: sum_latitude / (coords.len() as f64),
+    })
+}
+
 #[cfg(test)]
 mod tests {
+    use crate::hexjson::{Hex, HexJson, generate_hex_json};
+
     use super::*;
 
     #[test]
-    fn test_parse_json_file() {
-        let file_path = "tests/test_geojson.json";
+    fn test_convert_geojson_to_hexjson() {
+        let file_path = "data/Manual_AberdeenshireIZHexMap.geojson";
 
-        let expected = GeoJson {
-            geo_type: "FeatureCollection".to_string(),
-            name: "AberdeenshireIZs2".to_string(),
-            crs: CRS {
-                crs_type: "name".to_string(),
-                properties: CRSProperties {
-                    name: "urn:ogc:def:crs:OGC:1.3:CRS84".to_string(),
-                },
-            },
-            features: vec![Feature {
-                feature_type: "Feature".to_string(),
-                properties: FeatureProperties {
-                    izcode: "S02001285".to_string(),
-                    name: "East Cairngorms".to_string(),
-                },
-                geometry: Geometry {
-                    geometry_type: "Polygon".to_string(),
-                    coordinates: vec![vec![
-                        vec![0.02, -0.05962],
-                        vec![0.02, -0.06346],
-                        vec![0.01667, -0.06539],
-                        vec![0.01333, -0.06346],
-                        vec![0.01333, -0.05962],
-                        vec![0.01667, -0.05769],
-                        vec![0.02, -0.05962],
-                        vec![0.02, -0.05962],
-                    ]],
-                },
-            }],
+        let geojson = parse_json_file(file_path).unwrap();
+        let centroids = geojson.features.iter().map(|f| average_coordinates(&f.geometry.coordinates[0]).unwrap());
+        let min_x = centroids.clone().map(|c|c.longitude).min_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal)).unwrap();
+        let max_x = centroids.clone().map(|c|c.longitude).max_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal)).unwrap();
+        let min_y = centroids.clone().map(|c|c.latitude).min_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal)).unwrap();
+        let max_y = centroids.clone().map(|c|c.latitude).max_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal)).unwrap();
+        println!("Bounds: {},{} : {},{}", min_x,min_y,max_x,max_y);
+        let x_width = 30;
+        let y_height = 30;
+        let x_step = (max_x - min_x) / x_width as f64;
+        let y_step = (max_y - min_y) / y_height as f64;
+
+        let mut hexes = HashMap::new();
+        for feature in geojson.features.iter() {
+            println!("{:?}", feature);
+            let coordinates = &feature.geometry.coordinates[0];
+            let centroid = average_coordinates(coordinates).unwrap();
+            println!("Centroid: {:?}", centroid);
+            let hex = Hex {
+                n: feature.properties.name.clone(),
+                q: ((centroid.longitude - min_x) / x_step) as i32,
+                r: ((centroid.latitude - min_y) / y_step) as i32,
+                region: feature.properties.izcode.clone(), // FIXME: this should be the region!
+                colour: "#2254F4".to_string(),
+            };
+            println!("{:?}", hex);
+            hexes.insert(feature.properties.izcode.clone(), hex);
+        }
+
+        let hexjson = HexJson {
+            layout: "odd-r".to_string(),
+            hexes,
         };
 
-        assert_eq!(parse_json_file(file_path).unwrap(), expected);
+        let filename = "tmp/output_hexjson.json";
+        generate_hex_json(filename, &hexjson).expect("Failed to write HexJson to file");
+
     }
 }
