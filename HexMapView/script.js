@@ -62,7 +62,7 @@ hex = new OI.hexmap(document.getElementById('hexmap3'),{
 	// Once we've loaded the map the ready function is called
 	'ready':function(){
 		// Load the data
-		OI.ajax('../Data/aberdeenshire_IZ.json',{
+		OI.ajax('../Data/male_aberdeenshire_IZ.json',{
 			'this': this, // Set the context to the hexmap
 			'dataType':'json',
 			'success':function(data){
@@ -89,6 +89,7 @@ hex.on('mouseover',function(e){
 	hex = e.target;
 	// Get any existing tooltip for this hexmap
 	tip = svg.querySelector('.tooltip');
+	console.log(e.data.region);
 	if(!tip){
 		// Add a new tooltip
 		tip = document.createElement('div');
@@ -96,7 +97,7 @@ hex.on('mouseover',function(e){
 		svg.appendChild(tip);
 	}
 	// Update contents of tooltip
-	tip.innerHTML = e.data.data.n+'<br />'+mapDataInfo[e.data.region].toLocaleString()+' signatures';
+	tip.innerHTML = e.data.data.n+'<br />'+mapData.hexes[e.data.region].clients_per_100_pop.toLocaleString()+' clients per 100 population';
 	// Update position of tooltip
 	bb = hex.getBoundingClientRect();
 	bbo = svg.getBoundingClientRect();
