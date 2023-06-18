@@ -65,7 +65,7 @@ mod tests {
 
     #[test]
     fn test_parse_json_file() {
-        let file_path = "tests/test.json";
+        let file_path = "tests/test_geojson.json";
 
         let expected = GeoJson {
             geo_type: "FeatureCollection".to_string(),
