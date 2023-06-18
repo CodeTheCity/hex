@@ -4,9 +4,6 @@ import csv
 with open("Data/aberdeenshire_IZ.hexjson") as f:
     hexjson = json.load(f)
 
-print(hexjson)
-_ = [print(h) for h in hexjson["hexes"]]
-    
 with open("Data/IZdata.csv") as csvfile:
     dr = csv.reader(csvfile)
     rows = [r for r in dr]
@@ -33,3 +30,11 @@ with open("male_aberdeenshire_IZ.hexjson", "w") as outf:
 # hexjson["hexes"] = female_hexes
 # with open("female_aberdeenshire_IZ.hexjson", "w") as outf:
 #     outf.write(jsom.dumps(hexjson))    
+
+with open("male_aberdeenshire_IZ.csv", "w") as outf:
+    fieldnames = ['n', 'IZcode', 'name', 'q', 'r',
+                  'client count', 'population', 'clients per 100 pop']
+    writer = csv.DictWriter(outf, fieldnames=fieldnames)
+    writer.writeheader()
+    for k, d in male_hexes.items():
+        writer.writerow(d)
