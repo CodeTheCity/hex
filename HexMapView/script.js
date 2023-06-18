@@ -1,6 +1,6 @@
 // Attach our hexmap to <div id="hexmap1"></div>
 hex = new OI.hexmap(document.getElementById('hexmap2'),{
-	'labels':{
+	'label':{
 		'show': true,	// Show a label
 		'clip': true,	// Make sure the label is clipped to the hexagon
 		// Define a function to format the hex labels
@@ -13,12 +13,14 @@ hex = new OI.hexmap(document.getElementById('hexmap2'),{
 		//		* y - the vertical position in pixels
 		//		* hex - the hexagon's HexJSON properties
 		'format': function(txt,attr){
-			tspans = '<tspan class="off">'+txt.substr(0,3)+'</tspan>';
-			lines = txt.split(/ /);
-			lines.push(attr.hex.pop.toLocaleString());
+			tspans = '<tspan class="off">'+txt+'</tspan>';
+			lines = txt.split(/,/);
+			// lines.push(attr.hex.pop.toLocaleString());
 			for(var i = 0; i < lines.length; i++){
-				tspans += '<tspan class="on'+(i==lines.length-1 ? ' big':'')+'" y="'+(attr.y + (i-lines.length/2+0.5)*attr['font-size'])+'" x="'+attr.x+'">'+lines[i]+'</tspan>';
+			    tspans += '<tspan class="on'+(i==lines.length-1 ? ' big':'')+'" y="'+(
+                                attr.y + (i-lines.length/2+0.5)*attr['font-size'])+'" x="'+attr.x+'">'+lines[i]+'</tspan>';
 			}
+                        console.log(tspans);
 			return tspans;
 		}
 	},
